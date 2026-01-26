@@ -17,21 +17,24 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          <Link href="#features" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/#features" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             Features
           </Link>
-          <Link href="#pricing" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/pricing" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             Pricing
           </Link>
-          <Link href="#testimonials" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/#testimonials" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             Testimonials
           </Link>
-          <Link href="https://talus-sign-in-app.onrender.com" target="_blank" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            Demo
+          <Link href="/demo" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            Schedule Demo
           </Link>
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
+          <Button variant="ghost" asChild>
+            <Link href="/demo">Schedule a Demo</Link>
+          </Button>
           <Button asChild>
             <Link href="/pricing">Start Free Trial</Link>
           </Button>
@@ -56,18 +59,18 @@ export function Header() {
             <Link href="#features" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               Features
             </Link>
-            <Link href="#pricing" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/pricing" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               Pricing
             </Link>
             <Link href="#testimonials" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               Testimonials
             </Link>
-            <Link href="https://talus-sign-in-app.onrender.com" target="_blank" className="text-sm font-medium text-muted-foreground">
-              Demo
+            <Link href="/demo" className="text-sm font-medium text-muted-foreground">
+              Schedule Demo
             </Link>
             <div className="flex flex-col gap-2 pt-4">
               <Button variant="outline" asChild className="w-full bg-transparent">
-                <Link href="https://talus-sign-in-app.onrender.com" target="_blank">Sign In</Link>
+                <Link href="/demo">Schedule a Demo</Link>
               </Button>
               <Button asChild className="w-full">
                 <Link href="/pricing">Start Free Trial</Link>

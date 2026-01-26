@@ -19,7 +19,7 @@ export function CTA() {
               <Link href="/trial">Start 14-Day Free Trial</Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground bg-transparent">
-              <Link href="https://talus-sign-in-app.onrender.com" target="_blank">Request a Demo</Link>
+              <Link href="/demo">Schedule a Demo</Link>
             </Button>
           </div>
         </div>

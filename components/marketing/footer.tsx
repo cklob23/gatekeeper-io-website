@@ -5,26 +5,26 @@ const footerLinks = {
   product: [
     { label: "Features", href: "#features" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Demo", href: "https://talus-sign-in-app.onrender.com" },
-    { label: "Changelog", href: "#" }
+    { label: "Schedule Demo", href: "/demo" },
+    { label: "Free Trial", href: "/trial" }
   ],
   company: [
-    { label: "About", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Contact", href: "#" }
+    { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
+    { label: "Careers", href: "/careers" },
+    { label: "Contact", href: "/contact" }
   ],
   resources: [
-    { label: "Documentation", href: "#" },
-    { label: "Help Center", href: "#" },
-    { label: "API Reference", href: "#" },
-    { label: "Status", href: "#" }
+    { label: "Documentation", href: "/docs" },
+    { label: "Help Center", href: "/help" },
+    { label: "API Reference", href: "/api-docs" },
+    { label: "Status", href: "/status" }
   ],
   legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Security", href: "#" },
-    { label: "GDPR", href: "#" }
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Security", href: "/security" },
+    { label: "GDPR", href: "/gdpr" }
   ]
 }
 

@@ -1,6 +1,7 @@
 export interface Product {
   id: string
   name: string
+  stripeLookupKey: string // Used to find the price in Stripe
   description: string
   priceInCents: number
   priceDisplay: string
@@ -23,6 +24,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "starter",
     name: "Starter",
+    stripeLookupKey: "starter_monthly",
     description: "Perfect for churches, small offices, and single locations",
     priceInCents: 2900, // $29.00
     priceDisplay: "$29",
@@ -41,6 +43,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "pro",
     name: "Pro",
+    stripeLookupKey: "pro_monthly",
     description: "For growing organizations with multiple locations",
     priceInCents: 5900, // $59.00
     priceDisplay: "$59",
@@ -61,6 +64,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "enterprise",
     name: "Enterprise",
+    stripeLookupKey: "enterprise_monthly",
     description: "For regulated facilities and large organizations",
     priceInCents: 14900, // $149.00
     priceDisplay: "$149",
