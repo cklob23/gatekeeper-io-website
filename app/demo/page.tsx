@@ -16,7 +16,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, ArrowLeft, CheckCircle2, Calendar, Clock, Users } from "lucide-react"
+import { Shield, ArrowLeft, CheckCircle2, Calendar, Clock, Users, AlertCircle } from "lucide-react"
+import { sendEmail, formatEmailBody } from "@/lib/email"
 
 const COMPANY_SIZES = [
   { value: "1-10", label: "1-10 employees" },
@@ -40,6 +41,7 @@ const ORGANIZATION_TYPES = [
 export default function DemoPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -54,12 +56,36 @@ export default function DemoPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate form submission - in production, this would send to your backend/email service
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsSubmitted(true)
+    setError(null)
+
+    // Get organization type label for email
+    const orgTypeLabel = ORGANIZATION_TYPES.find(t => t.value === formData.organizationType)?.label || formData.organizationType
+    const companySizeLabel = COMPANY_SIZES.find(s => s.value === formData.companySize)?.label || formData.companySize
+
+    const emailResult = await sendEmail({
+      name: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      subject: `Demo Request from ${formData.companyName}`,
+      message: formatEmailBody({
+        "First Name": formData.firstName,
+        "Last Name": formData.lastName,
+        "Email": formData.email,
+        "Phone": formData.phone,
+        "Company": formData.companyName,
+        "Organization Type": orgTypeLabel,
+        "Company Size": companySizeLabel,
+        "Additional Notes": formData.message,
+      }),
+      replyto: formData.email,
+    })
+
     setIsSubmitting(false)
+
+    if (emailResult.success) {
+      setIsSubmitted(true)
+    } else {
+      setError(emailResult.message)
+    }
   }
 
   if (isSubmitted) {
@@ -296,6 +322,13 @@ export default function DemoPage() {
                       placeholder="Tell us about your visitor management needs..."
                     />
                   </div>
+
+                  {error && (
+                    <div className="flex items-center gap-2 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+                      <AlertCircle className="h-4 w-4 shrink-0" />
+                      <span>{error}</span>
+                    </div>
+                  )}
 
                   <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
                     {isSubmitting ? "Submitting..." : "Request Demo"}

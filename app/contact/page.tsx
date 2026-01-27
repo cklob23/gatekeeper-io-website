@@ -11,7 +11,8 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, AlertCircle } from "lucide-react"
+import { sendEmail, formatEmailBody } from "@/lib/email"
 
 const contactInfo = [
   {
@@ -41,11 +42,53 @@ const contactInfo = [
 ]
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    subject: "",
+    message: "",
+  })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setIsSubmitting(true)
+    setError(null)
+
+    const subjectLabels: Record<string, string> = {
+      general: "General Inquiry",
+      sales: "Sales Question",
+      support: "Technical Support",
+      billing: "Billing",
+      partnership: "Partnership",
+    }
+
+    const emailResult = await sendEmail({
+      name: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      subject: `Contact Form: ${subjectLabels[formData.subject] || formData.subject}`,
+      message: formatEmailBody({
+        "First Name": formData.firstName,
+        "Last Name": formData.lastName,
+        "Email": formData.email,
+        "Company": formData.company,
+        "Subject": subjectLabels[formData.subject] || formData.subject,
+        "Message": formData.message,
+      }),
+      replyto: formData.email,
+    })
+
+    setIsSubmitting(false)
+
+    if (emailResult.success) {
+      setSubmitted(true)
+    } else {
+      setError(emailResult.message)
+    }
   }
 
   return (
@@ -89,24 +132,47 @@ export default function ContactPage() {
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="space-y-2">
                           <Label htmlFor="firstName">First Name</Label>
-                          <Input id="firstName" required />
+                          <Input 
+                            id="firstName" 
+                            required 
+                            value={formData.firstName}
+                            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                          />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="lastName">Last Name</Label>
-                          <Input id="lastName" required />
+                          <Input 
+                            id="lastName" 
+                            required 
+                            value={formData.lastName}
+                            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                          />
                         </div>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" required />
+                        <Input 
+                          id="email" 
+                          type="email" 
+                          required 
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="company">Company</Label>
-                        <Input id="company" />
+                        <Input 
+                          id="company"
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="subject">Subject</Label>
-                        <Select>
+                        <Select
+                          value={formData.subject}
+                          onValueChange={(value) => setFormData({ ...formData, subject: value })}
+                        >
                           <SelectTrigger>
                             <SelectValue placeholder="Select a subject" />
                           </SelectTrigger>
@@ -121,10 +187,24 @@ export default function ContactPage() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="message">Message</Label>
-                        <Textarea id="message" rows={5} required />
+                        <Textarea 
+                          id="message" 
+                          rows={5} 
+                          required 
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        />
                       </div>
-                      <Button type="submit" className="w-full">
-                        Send Message
+
+                      {error && (
+                        <div className="flex items-center gap-2 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+                          <AlertCircle className="h-4 w-4 shrink-0" />
+                          <span>{error}</span>
+                        </div>
+                      )}
+
+                      <Button type="submit" className="w-full" disabled={isSubmitting}>
+                        {isSubmitting ? "Sending..." : "Send Message"}
                       </Button>
                     </form>
                   )}
