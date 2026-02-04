@@ -1,7 +1,6 @@
 "use server"
 
 import { stripe } from "@/lib/stripe"
-import type Stripe from "stripe"
 import { PRODUCTS } from "@/lib/products"
 
 export async function startCheckoutSession(productId: string, customerEmail?: string) {
@@ -15,57 +14,50 @@ export async function startCheckoutSession(productId: string, customerEmail?: st
     throw new Error("Enterprise plans require a sales consultation")
   }
 
-  // Try to find existing Stripe price by lookup_key, fallback to creating price_data
-  let lineItems: Stripe.Checkout.SessionCreateParams["line_items"]
-  
-  try {
-    // Search for existing price with lookup_key
+  // Search for the Stripe product by name
+  const stripeProducts = await stripe.products.search({
+    query: `name~"${product.name}" AND active:"true"`,
+    limit: 1,
+  })
+
+  let priceId: string
+
+  if (stripeProducts.data.length > 0) {
+    // Found existing product, get its default price
+    const stripeProduct = stripeProducts.data[0]
     const prices = await stripe.prices.list({
-      lookup_keys: [product.stripeLookupKey],
+      product: stripeProduct.id,
       active: true,
       limit: 1,
     })
-    
+
     if (prices.data.length > 0) {
-      // Use existing Stripe price
-      lineItems = [{ price: prices.data[0].id, quantity: 1 }]
+      priceId = prices.data[0].id
     } else {
-      // Fallback: create price_data inline
-      lineItems = [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: `Gatekeeper ${product.name}`,
-              description: product.description,
-            },
-            unit_amount: product.priceInCents,
-            recurring: {
-              interval: "month",
-            },
-          },
-          quantity: 1,
-        },
-      ]
+      // Product exists but no price, create one
+      const price = await stripe.prices.create({
+        product: stripeProduct.id,
+        unit_amount: product.priceInCents,
+        currency: "usd",
+        recurring: { interval: "month" },
+      })
+      priceId = price.id
     }
-  } catch {
-    // Fallback: create price_data inline
-    lineItems = [
-      {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: `Gatekeeper ${product.name}`,
-            description: product.description,
-          },
-          unit_amount: product.priceInCents,
-          recurring: {
-            interval: "month",
-          },
-        },
-        quantity: 1,
-      },
-    ]
+  } else {
+    // Product doesn't exist, create product and price
+    const newProduct = await stripe.products.create({
+      name: product.name,
+      description: product.description,
+      tax_code: "txcd_10000000", // General - Electronically Supplied Services
+    })
+
+    const price = await stripe.prices.create({
+      product: newProduct.id,
+      unit_amount: product.priceInCents,
+      currency: "usd",
+      recurring: { interval: "month" },
+    })
+    priceId = price.id
   }
 
   // Create Checkout Session with subscription mode for recurring billing
@@ -73,7 +65,7 @@ export async function startCheckoutSession(productId: string, customerEmail?: st
     ui_mode: "embedded",
     redirect_on_completion: "never",
     customer_email: customerEmail,
-    line_items: lineItems,
+    line_items: [{ price: priceId, quantity: 1 }],
     mode: "subscription",
     automatic_tax: { enabled: true },
     subscription_data: {
