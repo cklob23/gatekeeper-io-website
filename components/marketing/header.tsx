@@ -1,12 +1,30 @@
 "use client"
 
+import React from "react"
+
 import Link from "next/link"
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Shield, Menu, X } from "lucide-react"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    // Only handle scroll on the home page
+    if (pathname !== "/") {
+      return // Let the link navigate normally
+    }
+    
+    e.preventDefault()
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+    setMobileMenuOpen(false)
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -17,15 +35,23 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          <Link href="/#features" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+          <a 
+            href={pathname === "/" ? "#features" : "/#features"} 
+            onClick={(e) => scrollToSection(e, "features")}
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
             Features
-          </Link>
+          </a>
           <Link href="/pricing" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             Pricing
           </Link>
-          <Link href="/#testimonials" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+          <a 
+            href={pathname === "/" ? "#testimonials" : "/#testimonials"} 
+            onClick={(e) => scrollToSection(e, "testimonials")}
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
             Testimonials
-          </Link>
+          </a>
           <Link href="/demo" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             Schedule Demo
           </Link>
@@ -33,7 +59,7 @@ export function Header() {
 
         <div className="hidden items-center gap-4 md:flex">
           <Button variant="ghost" asChild>
-            <Link href="/demo">Schedule a Demo</Link>
+            <Link href="/demo">Sign In</Link>
           </Button>
           <Button asChild>
             <Link href="/pricing">Start Free Trial</Link>
@@ -56,21 +82,29 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="border-t border-border bg-background md:hidden">
           <div className="flex flex-col gap-4 p-4">
-            <Link href="/#features" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
+            <a 
+              href={pathname === "/" ? "#features" : "/#features"} 
+              onClick={(e) => scrollToSection(e, "features")}
+              className="text-sm font-medium text-muted-foreground"
+            >
               Features
-            </Link>
+            </a>
             <Link href="/pricing" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               Pricing
             </Link>
-            <Link href="/#testimonials" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
+            <a 
+              href={pathname === "/" ? "#testimonials" : "/#testimonials"} 
+              onClick={(e) => scrollToSection(e, "testimonials")}
+              className="text-sm font-medium text-muted-foreground"
+            >
               Testimonials
-            </Link>
+            </a>
             <Link href="/demo" className="text-sm font-medium text-muted-foreground">
               Schedule Demo
             </Link>
             <div className="flex flex-col gap-2 pt-4">
               <Button variant="outline" asChild className="w-full bg-transparent">
-                <Link href="/demo">Schedule a Demo</Link>
+                <Link href="/demo">Sign In</Link>
               </Button>
               <Button asChild className="w-full">
                 <Link href="/pricing">Start Free Trial</Link>
