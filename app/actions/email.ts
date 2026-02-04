@@ -20,7 +20,7 @@ export interface EmailResponse {
 }
 
 export async function sendEmail(data: EmailData): Promise<EmailResponse> {
-  const accessKey = process.env.WEB3FORMS_KEY
+  const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
 
   if (!accessKey) {
     console.error("[v0] Web3Forms access key not configured")
