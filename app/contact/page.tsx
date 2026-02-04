@@ -13,7 +13,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Clock, AlertCircle } from "lucide-react"
 import { sendEmail } from "@/app/actions/email"
-import { formatEmailBody } from "@/lib/email-utils"
 
 const contactInfo = [
   {
@@ -45,15 +44,15 @@ const contactInfo = [
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     company: "",
     subject: "",
-    message: "",
+    message: ""
   })
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -68,27 +67,34 @@ export default function ContactPage() {
       partnership: "Partnership",
     }
 
-    const emailResult = await sendEmail({
-      name: `${formData.firstName} ${formData.lastName}`,
-      email: formData.email,
-      subject: `Contact Form: ${subjectLabels[formData.subject] || formData.subject}`,
-      message: formatEmailBody({
-        "First Name": formData.firstName,
-        "Last Name": formData.lastName,
-        "Email": formData.email,
-        "Company": formData.company,
-        "Subject": subjectLabels[formData.subject] || formData.subject,
-        "Message": formData.message,
-      }),
-      replyto: formData.email,
+    const subjectLine = subjectLabels[formData.subject] || "General Inquiry"
+    
+    // Build email body
+    const emailBody = `
+Contact Form Submission:
+------------------------
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Company: ${formData.company || "Not provided"}
+Subject: ${subjectLine}
+
+Message:
+${formData.message}
+    `.trim()
+
+    const result = await sendEmail({
+      to: "support@gatekeeper.io",
+      subject: `[Gatekeeper Contact] ${subjectLine}`,
+      text: emailBody,
+      replyTo: formData.email,
     })
 
     setIsSubmitting(false)
 
-    if (emailResult.success) {
+    if (result.success) {
       setSubmitted(true)
     } else {
-      setError(emailResult.message)
+      setError(result.message)
     }
   }
 

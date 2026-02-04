@@ -18,7 +18,6 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, ArrowLeft, CheckCircle2, Calendar, Clock, Users, AlertCircle } from "lucide-react"
 import { sendEmail } from "@/app/actions/email"
-import { formatEmailBody } from "@/lib/email-utils"
 
 const COMPANY_SIZES = [
   { value: "1-10", label: "1-10 employees" },
@@ -53,6 +52,7 @@ export default function DemoPage() {
     organizationType: "",
     message: "",
   })
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -63,29 +63,32 @@ export default function DemoPage() {
     const orgTypeLabel = ORGANIZATION_TYPES.find(t => t.value === formData.organizationType)?.label || formData.organizationType
     const companySizeLabel = COMPANY_SIZES.find(s => s.value === formData.companySize)?.label || formData.companySize
 
-    const emailResult = await sendEmail({
-      name: `${formData.firstName} ${formData.lastName}`,
-      email: formData.email,
+    // Build email body
+    const emailBody = `
+Demo Request Details:
+--------------------
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Phone: ${formData.phone || "Not provided"}
+Company: ${formData.companyName}
+Organization Type: ${orgTypeLabel}
+Company Size: ${companySizeLabel}
+Additional Notes: ${formData.message || "None"}
+    `.trim()
+
+    const result = await sendEmail({
+      to: "sales@gatekeeper.io",
       subject: `Demo Request from ${formData.companyName}`,
-      message: formatEmailBody({
-        "First Name": formData.firstName,
-        "Last Name": formData.lastName,
-        "Email": formData.email,
-        "Phone": formData.phone,
-        "Company": formData.companyName,
-        "Organization Type": orgTypeLabel,
-        "Company Size": companySizeLabel,
-        "Additional Notes": formData.message,
-      }),
-      replyto: formData.email,
+      text: emailBody,
+      replyTo: formData.email,
     })
 
     setIsSubmitting(false)
 
-    if (emailResult.success) {
+    if (result.success) {
       setIsSubmitted(true)
     } else {
-      setError(emailResult.message)
+      setError(result.message)
     }
   }
 
