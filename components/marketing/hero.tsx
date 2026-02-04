@@ -34,10 +34,6 @@ export function Hero() {
             </Button>
           </div>
           
-          <p className="mt-4 text-sm text-muted-foreground">
-            No credit card required
-          </p>
-          
           <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
             {[
               "Complete Audit Trail",

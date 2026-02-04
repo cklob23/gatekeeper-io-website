@@ -56,13 +56,13 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="border-t border-border bg-background md:hidden">
           <div className="flex flex-col gap-4 p-4">
-            <Link href="#features" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/#features" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               Features
             </Link>
             <Link href="/pricing" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               Pricing
             </Link>
-            <Link href="#testimonials" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/#testimonials" className="text-sm font-medium text-muted-foreground" onClick={() => setMobileMenuOpen(false)}>
               Testimonials
             </Link>
             <Link href="/demo" className="text-sm font-medium text-muted-foreground">

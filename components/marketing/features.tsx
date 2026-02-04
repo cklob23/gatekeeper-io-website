@@ -8,6 +8,7 @@ import {
   Bell,
   Palette
 } from "lucide-react"
+import { UIShowcase } from "./ui-showcase"
 
 const features = [
   {
@@ -65,7 +66,12 @@ export function Features() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {/* UI Screenshots Showcase */}
+        <div className="mt-12 mb-20">
+          <UIShowcase />
+        </div>
+
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature) => (
             <div
               key={feature.title}

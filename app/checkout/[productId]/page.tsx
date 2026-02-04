@@ -60,7 +60,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
                   <Shield className="h-8 w-8 text-primary" />
                   <div>
                     <h1 className="text-2xl font-bold text-foreground">
-                      Gatekeeper {product.name}
+                      Gatekeeper.io {product.name}
                     </h1>
                     <p className="text-muted-foreground">{product.description}</p>
                   </div>

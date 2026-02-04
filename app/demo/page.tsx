@@ -65,19 +65,19 @@ export default function DemoPage() {
 
     // Build email body
     const emailBody = `
-Demo Request Details:
---------------------
-Name: ${formData.firstName} ${formData.lastName}
-Email: ${formData.email}
-Phone: ${formData.phone || "Not provided"}
-Company: ${formData.companyName}
-Organization Type: ${orgTypeLabel}
-Company Size: ${companySizeLabel}
-Additional Notes: ${formData.message || "None"}
-    `.trim()
+    Demo Request Details:
+    --------------------
+    Name: ${formData.firstName} ${formData.lastName}
+    Email: ${formData.email}
+    Phone: ${formData.phone || "Not provided"}
+    Company: ${formData.companyName}
+    Organization Type: ${orgTypeLabel}
+    Company Size: ${companySizeLabel}
+    Additional Notes: ${formData.message || "None"}
+        `.trim()
 
     const result = await sendEmail({
-      to: "sales@gatekeeper.io",
+      to: "support@gatekeeperio.com",
       subject: `Demo Request from ${formData.companyName}`,
       text: emailBody,
       replyTo: formData.email,

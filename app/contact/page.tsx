@@ -18,20 +18,20 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "support@gatekeeper.io",
+    value: "support@gatekeeperio.com",
     description: "We typically respond within 24 hours"
   },
   {
     icon: Phone,
     title: "Phone",
-    value: "(555) 123-4567",
+    value: "(279) 201-9504",
     description: "Mon-Fri, 9am-5pm EST"
   },
   {
     icon: MapPin,
     title: "Office",
-    value: "123 Security Lane",
-    description: "Atlanta, GA 30301"
+    value: "220 Oakhill Drive",
+    description: "Rockmart, GA 30153"
   },
   {
     icon: Clock,
@@ -83,7 +83,7 @@ ${formData.message}
     `.trim()
 
     const result = await sendEmail({
-      to: "support@gatekeeper.io",
+      to: "support@gatekeeperio.com",
       subject: `[Gatekeeper Contact] ${subjectLine}`,
       text: emailBody,
       replyTo: formData.email,

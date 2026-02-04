@@ -22,7 +22,7 @@ export default function PricingPage() {
                 Simple, Transparent Pricing
               </h1>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                No hidden fees. No surprises. Start with a 14-day free trial, no credit card required.
+                No hidden fees. No surprises. Start with a 14-day free trial.
               </p>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function PricingPage() {
               {[
                 {
                   question: "What is included in the free trial?",
-                  answer: "The 14-day free trial includes full access to all features in your selected plan. No credit card required to start. You can upgrade, downgrade, or cancel at any time."
+                  answer: "The 14-day free trial includes full access to all features in your selected plan. You can upgrade, downgrade, or cancel at any time."
                 },
                 {
                   question: "How does per-location pricing work?",
