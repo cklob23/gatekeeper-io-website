@@ -56,7 +56,6 @@ export async function startCheckoutSession(productId: string, customerEmail?: st
       unit_amount: product.priceInCents,
       currency: "usd",
       recurring: { interval: "month" },
-      tax_behavior: "inclusive"
     })
     priceId = price.id
   }
