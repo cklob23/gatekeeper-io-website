@@ -50,14 +50,14 @@ export default function TrialPage() {
     }
 
     setIsLoading(true)
-    
+
     // Store email in session/URL params and redirect to registration
     const params = new URLSearchParams({
       email,
       plan,
       consent: marketingConsent ? "1" : "0",
     })
-    
+
     router.push(`/trial/register?${params.toString()}`)
   }
 
@@ -80,7 +80,7 @@ export default function TrialPage() {
               Secure your facility with Gatekeeper.
             </h1>
             <p className="mt-6 text-lg text-primary-foreground/80">
-              Gatekeeper is the trusted visitor management platform for organizations 
+              Gatekeeper is the trusted visitor management platform for organizations
               that prioritize security, accountability, and compliance.
             </p>
 
@@ -93,13 +93,13 @@ export default function TrialPage() {
               ))}
             </ul>
 
-            <button
-              type="button"
+            <Link
+              href="/demo"
               className="mt-8 inline-flex w-fit items-center gap-2 text-primary-foreground transition-colors hover:text-primary-foreground/80"
             >
               <Play className="h-5 w-5 fill-current" />
               <span className="font-medium">See How It Works</span>
-            </button>
+            </Link>
           </div>
 
           {/* Right Side - Email Capture Form */}
