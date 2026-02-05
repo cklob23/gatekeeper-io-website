@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { sendEmail } from "../actions/email"
 
 const benefits = [
   "Customizable UI for your brand identity",
@@ -50,6 +51,135 @@ export default function TrialPage() {
     }
 
     setIsLoading(true)
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeperio.com"
+    // Build email body
+    const emailBodySupport = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Gatekeeper.io!</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f4f4f5;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f4f4f5; padding: 40px 20px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <!-- Header with Logo -->
+          <tr>
+            <td style="background-color: #ffffff; padding: 40px 40px 20px 40px; text-align: left;">
+              <table role="presentation" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="vertical-align: middle;">
+                    <img src="${baseUrl}/icon.png" alt="logo" style="max-height: 50px; margin-bottom: 15px;" />
+                  </td>
+                  <td style="vertical-align: middle; padding-left: 12px;">
+                    <span style="font-size: 24px; font-weight: 700; color: #1565C0;">Gatekeeper.io</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 20px 40px 40px 40px;">
+              <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: 700; color: #1565C0;">
+                Welcome to Gatekeeper.io!
+              </h1>
+              
+              <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Hi there,
+              </p>
+              
+              <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                We're glad to have you aboard! Your <strong>${plan}</strong> subscription is now active, and your 14-day free trial has begun.
+              </p>
+              
+              <p style="margin: 0 0 30px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                You'll receive another email shortly with the link to access your free trial instance of the Gatekeeper.io app, along with instructions to get started.
+              </p>
+              
+              <h2 style="margin: 0 0 15px 0; font-size: 18px; font-weight: 600; color: #111827;">
+                What's next?
+              </h2>
+              
+              <ul style="margin: 0 0 30px 0; padding-left: 20px; font-size: 16px; line-height: 1.8; color: #374151;">
+                <li>Watch for your instance access email (arriving shortly)</li>
+                <li>Set up your organization and locations</li>
+                <li>Invite your team members</li>
+                <li>Configure your visitor workflows</li>
+              </ul>
+              
+              <h2 style="margin: 0 0 15px 0; font-size: 18px; font-weight: 600; color: #111827;">
+                Questions?
+              </h2>
+              
+              <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Our support team is here to help! You can reach us at:
+              </p>
+              
+              <p style="margin: 0 0 10px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Email: <a href="mailto:support@gatekeeperio.com" style="color: #1565C0; text-decoration: none;">support@gatekeeperio.com</a>
+              </p>
+              
+              <p style="margin: 0 0 30px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Or visit our <a href="${baseUrl}/contact" style="color: #1565C0; text-decoration: none;">Contact Page</a>
+              </p>
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #1e293b; padding: 30px 40px; text-align: center;">
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto 20px auto;">
+                <tr>
+                  <td style="vertical-align: middle;">
+                    <img src="${baseUrl}/icon.png" alt="logo" style="max-height: 50px; margin-bottom: 15px;" />
+                  </td>
+                  <td style="vertical-align: middle; padding-left: 8px;">
+                    <span style="font-size: 16px; font-weight: 600; color: #ffffff;">Gatekeeper.io</span>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="margin: 0 0 10px 0; font-size: 14px; color: #94a3b8;">
+                Secure Visitor Management
+              </p>
+              
+              <p style="margin: 0 0 20px 0; font-size: 12px; color: #64748b;">
+                This email was sent by Gatekeeper.io<br>
+                237 Security Lane, Suite 100<br>
+                Atlanta, GA 30301, USA
+              </p>
+              
+              <p style="margin: 0; font-size: 12px; color: #64748b;">
+                <a href="${baseUrl}/privacy" style="color: #94a3b8; text-decoration: none;">Privacy Policy</a>
+                &nbsp;&bull;&nbsp;
+                <a href="${baseUrl}/terms" style="color: #94a3b8; text-decoration: none;">Terms of Service</a>
+              </p>
+              
+              <p style="margin: 20px 0 0 0; font-size: 12px; color: #64748b;">
+                &copy; ${new Date().getFullYear()} Gatekeeper.io. All rights reserved.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `
+
+
+    await sendEmail({
+      to: "support@gatekeeperio.com",
+      subject: `Trial Interest from ${email}`,
+      html: emailBodySupport,
+      replyTo: email,
+    })
 
     // Store email in session/URL params and redirect to registration
     const params = new URLSearchParams({

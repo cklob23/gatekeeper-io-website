@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Clock, AlertCircle } from "lucide-react"
 import { sendEmail } from "@/app/actions/email"
+import { generateContactEmailHtml } from "@/lib/email-template"
 
 const contactInfo = [
   {
@@ -30,8 +31,8 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Office",
-    value: "220 Oakhill Drive",
-    description: "Rockmart, GA 30153"
+    value: "237 Security Lane",
+    description: "Atlanta, GA 30301"
   },
   {
     icon: Clock,
@@ -68,24 +69,20 @@ export default function ContactPage() {
     }
 
     const subjectLine = subjectLabels[formData.subject] || "General Inquiry"
-    
-    // Build email body
-    const emailBody = `
-Contact Form Submission:
-------------------------
-Name: ${formData.firstName} ${formData.lastName}
-Email: ${formData.email}
-Company: ${formData.company || "Not provided"}
-Subject: ${subjectLine}
 
-Message:
-${formData.message}
-    `.trim()
+    const html = generateContactEmailHtml({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      company: formData.company,
+      subject: subjectLine,
+      message: formData.message,
+    })
 
     const result = await sendEmail({
       to: "support@gatekeeperio.com",
       subject: `[Gatekeeper Contact] ${subjectLine}`,
-      text: emailBody,
+      html,
       replyTo: formData.email,
     })
 
@@ -139,18 +136,18 @@ ${formData.message}
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="space-y-2">
                           <Label htmlFor="firstName">First Name</Label>
-                          <Input 
-                            id="firstName" 
-                            required 
+                          <Input
+                            id="firstName"
+                            required
                             value={formData.firstName}
                             onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                           />
                         </div>
                         <div className="space-y-2">
                           <Label htmlFor="lastName">Last Name</Label>
-                          <Input 
-                            id="lastName" 
-                            required 
+                          <Input
+                            id="lastName"
+                            required
                             value={formData.lastName}
                             onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                           />
@@ -158,17 +155,17 @@ ${formData.message}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input 
-                          id="email" 
-                          type="email" 
-                          required 
+                        <Input
+                          id="email"
+                          type="email"
+                          required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="company">Company</Label>
-                        <Input 
+                        <Input
                           id="company"
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -194,10 +191,10 @@ ${formData.message}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="message">Message</Label>
-                        <Textarea 
-                          id="message" 
-                          rows={5} 
-                          required 
+                        <Textarea
+                          id="message"
+                          rows={5}
+                          required
                           value={formData.message}
                           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         />

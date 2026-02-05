@@ -18,6 +18,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, ArrowLeft, CheckCircle2, Calendar, Clock, Users, AlertCircle } from "lucide-react"
 import { sendEmail } from "@/app/actions/email"
+import { generateDemoRequestEmailHtml } from "@/lib/email-template"
 
 const COMPANY_SIZES = [
   { value: "1-10", label: "1-10 employees" },
@@ -63,23 +64,21 @@ export default function DemoPage() {
     const orgTypeLabel = ORGANIZATION_TYPES.find(t => t.value === formData.organizationType)?.label || formData.organizationType
     const companySizeLabel = COMPANY_SIZES.find(s => s.value === formData.companySize)?.label || formData.companySize
 
-    // Build email body
-    const emailBody = `
-    Demo Request Details:
-    --------------------
-    Name: ${formData.firstName} ${formData.lastName}
-    Email: ${formData.email}
-    Phone: ${formData.phone || "Not provided"}
-    Company: ${formData.companyName}
-    Organization Type: ${orgTypeLabel}
-    Company Size: ${companySizeLabel}
-    Additional Notes: ${formData.message || "None"}
-        `.trim()
+    const html = generateDemoRequestEmailHtml({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      companyName: formData.companyName,
+      organizationType: orgTypeLabel,
+      companySize: companySizeLabel,
+      message: formData.message,
+    })
 
     const result = await sendEmail({
-      to: "support@gatekeeperio.com",
+      to: "sales@gatekeeper.io",
       subject: `Demo Request from ${formData.companyName}`,
-      text: emailBody,
+      html,
       replyTo: formData.email,
     })
 

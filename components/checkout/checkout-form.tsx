@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback } from "react"
+import { useRouter } from "next/navigation"
 import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,
@@ -16,16 +17,32 @@ interface CheckoutFormProps {
 }
 
 export function CheckoutForm({ productId }: CheckoutFormProps) {
-  const fetchClientSecret = useCallback(async () => {
-    const clientSecret = await startCheckoutSession(productId)
-    return clientSecret || ""
-  }, [productId])
+  const router = useRouter()
+  
+  const fetchClientSecret = useCallback(
+    async () => {
+      const clientSecret = await startCheckoutSession(productId)
+      if (!clientSecret) {
+        throw new Error("Failed to create checkout session")
+      }
+      return clientSecret
+    },
+    [productId]
+  )
+
+  const handleComplete = useCallback(() => {
+    // Redirect to success page after checkout completes
+    router.push("/checkout/success")
+  }, [router])
 
   return (
     <div id="checkout" className="w-full">
       <EmbeddedCheckoutProvider
         stripe={stripePromise}
-        options={{ fetchClientSecret }}
+        options={{ 
+          fetchClientSecret,
+          onComplete: handleComplete,
+        }}
       >
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>

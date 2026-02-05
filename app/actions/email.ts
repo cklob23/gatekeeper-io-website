@@ -1,11 +1,12 @@
 "use server"
 
 import nodemailer from "nodemailer"
+import { generateWelcomeEmailHtml } from "@/lib/email-template"
 
 interface EmailData {
   to: string
   subject: string
-  text: string
+  html: string
   replyTo?: string
 }
 
@@ -35,7 +36,7 @@ export async function sendEmail(data: EmailData): Promise<{ success: boolean; me
       from: SMTP_FROM || SMTP_USER,
       to: data.to,
       subject: data.subject,
-      text: data.text,
+      html: data.html,
       replyTo: data.replyTo,
     })
 
@@ -47,4 +48,19 @@ export async function sendEmail(data: EmailData): Promise<{ success: boolean; me
       message: "Failed to send email. Please try again later.",
     }
   }
+}
+
+// Send welcome email after successful checkout
+export async function sendWelcomeEmail(
+  customerEmail: string,
+  customerName: string,
+  planName: string
+): Promise<{ success: boolean; message: string }> {
+  const html = generateWelcomeEmailHtml(customerName, planName)
+
+  return sendEmail({
+    to: customerEmail,
+    subject: "Welcome to Gatekeeper.io!",
+    html,
+  })
 }
