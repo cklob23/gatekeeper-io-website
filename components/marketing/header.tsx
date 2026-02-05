@@ -59,7 +59,7 @@ export function Header() {
 
         <div className="hidden items-center gap-4 md:flex">
           <Button variant="ghost" asChild>
-            <Link href="/demo">Sign In</Link>
+            <Link href="/demo">Request a Demo</Link>
           </Button>
           <Button asChild>
             <Link href="/pricing">Start Free Trial</Link>
