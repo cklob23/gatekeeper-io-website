@@ -110,7 +110,7 @@ export default function TrialPage() {
                   Try it free for 14 days—
                 </h2>
                 <p className="text-xl font-semibold text-accent">
-                  no credit card required.
+                  no upfront payment required.
                 </p>
               </div>
 
