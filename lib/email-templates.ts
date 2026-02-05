@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeper.io"
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeperio.com"
 
 // Shared email wrapper with header and footer
 function emailWrapper(content: string): string {
@@ -276,3 +276,49 @@ export function generateContactEmailHtml(data: {
   `
     return emailWrapper(content)
 }
+
+// Contact form email
+export function generatTrialRequestEmailHtml(data: {
+    email: string
+    marketingConsent?: boolean
+    plan: string
+}): string {
+    const content = `
+    <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: 700; color: #1565C0;">
+      New Trial Interest Submission
+    </h1>
+    
+    <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+      A new trial interest has been submitted through the trial interest form.
+    </p>
+    
+    <table role="presentation" cellspacing="0" cellpadding="0" style="width: 100%; margin-bottom: 20px;">
+      <tr>
+        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
+          <strong style="color: #374151;">Email</strong>
+        </td>
+        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
+          <a href="mailto:${data.email}" style="color: #1565C0; text-decoration: none;">${data.email}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; background-color: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+          <strong style="color: #374151;">User interested in receiving marketing communications?</strong>
+        </td>
+        <td style="padding: 12px; background-color: #f8fafc; border-bottom: 1px solid #e2e8f0; color: #374151;">
+          ${data.marketingConsent || "Not provided"}
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">
+          <strong style="color: #374151;">Potential Plan</strong>
+        </td>
+        <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; color: #374151;">
+          ${data.plan}
+        </td>
+      </tr>
+    </table>
+  `
+    return emailWrapper(content)
+}
+

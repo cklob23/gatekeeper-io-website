@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, ArrowLeft, CheckCircle2, Calendar, Clock, Users, AlertCircle } from "lucide-react"
-import { sendEmail } from "@/app/actions/email"
-import { generateDemoRequestEmailHtml } from "@/lib/email-template"
+import { sendEmail } from "@/lib/email"
+import { generateDemoRequestEmailHtml } from "@/lib/email-templates"
 
 const COMPANY_SIZES = [
   { value: "1-10", label: "1-10 employees" },

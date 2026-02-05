@@ -12,8 +12,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Clock, AlertCircle } from "lucide-react"
-import { sendEmail } from "@/app/actions/email"
-import { generateContactEmailHtml } from "@/lib/email-template"
+import { sendEmail } from "@/lib/email"
+import { generateContactEmailHtml } from "@/lib/email-templates"
 
 const contactInfo = [
   {

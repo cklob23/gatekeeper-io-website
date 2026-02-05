@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { stripe } from "@/lib/stripe"
-import { sendWelcomeEmail } from "@/app/actions/email"
+import { generateWelcomeEmailHtml } from "@/lib/email-templates"
 import type Stripe from "stripe"
 
 export async function POST(request: NextRequest) {
@@ -48,13 +48,30 @@ export async function POST(request: NextRequest) {
         console.error("[v0] Failed to fetch line items:", err)
       }
 
-      // Send the welcome email
-      const emailResult = await sendWelcomeEmail(customerEmail, customerName, planName)
+      // Send the welcome email via internal API call
+      const html = generateWelcomeEmailHtml(customerName, planName)
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeper.io"
       
-      if (!emailResult.success) {
-        console.error("[v0] Failed to send welcome email:", emailResult.message)
-      } else {
-        console.log("[v0] Welcome email sent successfully to:", customerEmail)
+      try {
+        const emailResponse = await fetch(`${baseUrl}/api/email`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            to: customerEmail,
+            subject: "Welcome to Gatekeeper.io!",
+            html,
+          }),
+        })
+        
+        const emailResult = await emailResponse.json()
+        
+        if (!emailResult.success) {
+          console.error("[v0] Failed to send welcome email:", emailResult.message)
+        } else {
+          console.log("[v0] Welcome email sent successfully to:", customerEmail)
+        }
+      } catch (err) {
+        console.error("[v0] Error sending welcome email:", err)
       }
     }
   }

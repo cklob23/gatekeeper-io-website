@@ -17,7 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { sendEmail } from "../actions/email"
+import { sendEmail } from "@/lib/email"
+import { generatTrialRequestEmailHtml } from "@/lib/email-templates"
 
 const benefits = [
   "Customizable UI for your brand identity",
@@ -52,37 +53,16 @@ export default function TrialPage() {
 
     setIsLoading(true)
 
-    // Build email body
-    const emailBodySupport = `
-      <table cellpadding="0" cellspacing="0" style="font-family: Arial, Helvetica, sans-serif; font-size:14px; color:#0f172a; background-color:#f8fafc; border-radius:6px; padding:16px;">
-        <tr>
-          <td style="font-weight:600; padding-bottom:10px;">
-            Trial Request Details
-          </td>
-        </tr>
-        <hr/>
-        <tr>
-          <td style="padding-bottom:6px;">
-            <strong>Email:</strong> ${email}
-          </td>
-        </tr>
-        <tr>
-          <td style="padding-bottom:6px;">
-            <strong>Marketing Communications:</strong> ${marketingConsent}
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Selected Plan:</strong> ${plan}
-          </td>
-        </tr>
-      </table>
-  `
+    const html = generatTrialRequestEmailHtml({
+      email,
+      marketingConsent,
+      plan,
+    })
 
-    await sendEmail({
+    const result = await sendEmail({
       to: "support@gatekeeperio.com",
-      subject: `Trial Interest from ${email}`,
-      html: emailBodySupport,
+      subject: `[Gatekeeper Trial Interest] ${email}`,
+      html,
       replyTo: email,
     })
 
