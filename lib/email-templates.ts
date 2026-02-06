@@ -1,8 +1,8 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeperio.com"
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeper.io"
 
 // Shared email wrapper with header and footer
 function emailWrapper(content: string): string {
-    return `
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +18,18 @@ function emailWrapper(content: string): string {
           <!-- Header with Logo -->
           <tr>
             <td style="background-color: #ffffff; padding: 40px 40px 20px 40px; text-align: left;">
-              <table role="presentation" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td style="vertical-align: middle;">
-                    <img src="${BASE_URL}/icon.png" alt="Gatekeeper.io" width="32" height="32" style="display: block;" />
-                  </td>
-                  <td style="vertical-align: middle; padding-left: 12px;">
-                    <span style="font-size: 24px; font-weight: 700; color: #1565C0;">Gatekeeper.io</span>
-                  </td>
-                </tr>
-              </table>
+              <a href="${BASE_URL}" style="text-decoration: none; display: inline-block;">
+                <table role="presentation" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td style="vertical-align: middle;">
+                      <img src="${BASE_URL}/logo.png" alt="Gatekeeper.io" width="32" height="32" style="display: block;" />
+                    </td>
+                    <td style="vertical-align: middle; padding-left: 12px;">
+                      <span style="font-size: 24px; font-weight: 700; color: #1565C0;">Gatekeeper.io</span>
+                    </td>
+                  </tr>
+                </table>
+              </a>
             </td>
           </tr>
           
@@ -41,16 +43,18 @@ function emailWrapper(content: string): string {
           <!-- Footer -->
           <tr>
             <td style="background-color: #1e293b; padding: 30px 40px; text-align: center;">
-              <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto 20px auto;">
-                <tr>
-                  <td style="vertical-align: middle;">
-                    <img src="${BASE_URL}/icon.png" alt="Gatekeeper.io" width="24" height="24" style="display: block;" />
-                  </td>
-                  <td style="vertical-align: middle; padding-left: 8px;">
-                    <span style="font-size: 16px; font-weight: 600; color: #ffffff;">Gatekeeper.io</span>
-                  </td>
-                </tr>
-              </table>
+              <a href="${BASE_URL}" style="text-decoration: none; display: inline-block;">
+                <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto 20px auto;">
+                  <tr>
+                    <td style="vertical-align: middle;">
+                      <img src="${BASE_URL}/logo.png" alt="Gatekeeper.io" width="24" height="24" style="display: block;" />
+                    </td>
+                    <td style="vertical-align: middle; padding-left: 8px;">
+                      <span style="font-size: 16px; font-weight: 600; color: #ffffff;">Gatekeeper.io</span>
+                    </td>
+                  </tr>
+                </table>
+              </a>
               
               <p style="margin: 0 0 10px 0; font-size: 14px; color: #94a3b8;">
                 Secure Visitor Management
@@ -58,7 +62,7 @@ function emailWrapper(content: string): string {
               
               <p style="margin: 0 0 20px 0; font-size: 12px; color: #64748b;">
                 This email was sent by Gatekeeper.io<br>
-                237 Security Lane, Suite 100<br>
+                123 Security Lane, Suite 100<br>
                 Atlanta, GA 30301, USA
               </p>
               
@@ -84,13 +88,13 @@ function emailWrapper(content: string): string {
 
 // Welcome email for new customers after checkout
 export function generateWelcomeEmailHtml(customerName: string, planName: string): string {
-    const content = `
+  const content = `
     <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: 700; color: #1565C0;">
-      Welcome to Gatekeeper.io!
+      Welcome to Gatekeeper.io
     </h1>
     
     <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #374151;">
-      Hi${customerName ? ` ${customerName}` : " there"},
+      Hi${customerName ? ` ${customerName}` : ""},
     </p>
     
     <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #374151;">
@@ -108,7 +112,7 @@ export function generateWelcomeEmailHtml(customerName: string, planName: string)
     <ul style="margin: 0 0 30px 0; padding-left: 20px; font-size: 16px; line-height: 1.8; color: #374151;">
       <li>Watch for your instance access email (arriving shortly)</li>
       <li>Set up your organization and locations</li>
-      <li>Add your team members</li>
+      <li>Invite your team members</li>
       <li>Configure your visitor workflows</li>
     </ul>
     
@@ -121,28 +125,28 @@ export function generateWelcomeEmailHtml(customerName: string, planName: string)
     </p>
     
     <p style="margin: 0 0 10px 0; font-size: 16px; line-height: 1.6; color: #374151;">
-      Email: <a href="mailto:support@gatekeeperio.com" style="color: #1565C0; text-decoration: none;">support@gatekeeperio.com</a>
+      Email: <a href="mailto:support@gatekeeper.io" style="color: #1565C0; text-decoration: none;">support@gatekeeper.io</a>
     </p>
     
     <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #374151;">
       Or visit our <a href="${BASE_URL}/contact" style="color: #1565C0; text-decoration: none;">Contact Page</a>
     </p>
   `
-    return emailWrapper(content)
+  return emailWrapper(content)
 }
 
 // Demo request email
 export function generateDemoRequestEmailHtml(data: {
-    firstName: string
-    lastName: string
-    email: string
-    phone?: string
-    companyName: string
-    organizationType: string
-    companySize: string
-    message?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone?: string
+  companyName: string
+  organizationType: string
+  companySize: string
+  message?: string
 }): string {
-    const content = `
+  const content = `
     <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: 700; color: #1565C0;">
       New Demo Request
     </h1>
@@ -211,19 +215,19 @@ export function generateDemoRequestEmailHtml(data: {
     </p>
     ` : ''}
   `
-    return emailWrapper(content)
+  return emailWrapper(content)
 }
 
 // Contact form email
 export function generateContactEmailHtml(data: {
-    firstName: string
-    lastName: string
-    email: string
-    company?: string
-    subject: string
-    message: string
+  firstName: string
+  lastName: string
+  email: string
+  company?: string
+  subject: string
+  message: string
 }): string {
-    const content = `
+  const content = `
     <h1 style="margin: 0 0 20px 0; font-size: 28px; font-weight: 700; color: #1565C0;">
       New Contact Form Submission
     </h1>
@@ -274,7 +278,7 @@ export function generateContactEmailHtml(data: {
       ${data.message}
     </p>
   `
-    return emailWrapper(content)
+  return emailWrapper(content)
 }
 
 // Contact form email
