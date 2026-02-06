@@ -22,7 +22,7 @@ function emailWrapper(content: string): string {
                 <table role="presentation" cellspacing="0" cellpadding="0">
                   <tr>
                     <td style="vertical-align: middle;">
-                      <img src="${BASE_URL}/logo.png" alt="Gatekeeper.io" width="32" height="32" style="display: block;" />
+                      <img src="${BASE_URL}/icon.png" alt="Gatekeeper.io" width="32" height="32" style="display: block;" />
                     </td>
                     <td style="vertical-align: middle; padding-left: 12px;">
                       <span style="font-size: 24px; font-weight: 700; color: #1565C0;">Gatekeeper.io</span>
@@ -47,7 +47,7 @@ function emailWrapper(content: string): string {
                 <table role="presentation" cellspacing="0" cellpadding="0" style="margin: 0 auto 20px auto;">
                   <tr>
                     <td style="vertical-align: middle;">
-                      <img src="${BASE_URL}/logo.png" alt="Gatekeeper.io" width="24" height="24" style="display: block;" />
+                      <img src="${BASE_URL}/icon.png" alt="Gatekeeper.io" width="24" height="24" style="display: block;" />
                     </td>
                     <td style="vertical-align: middle; padding-left: 8px;">
                       <span style="font-size: 16px; font-weight: 600; color: #ffffff;">Gatekeeper.io</span>
@@ -62,7 +62,7 @@ function emailWrapper(content: string): string {
               
               <p style="margin: 0 0 20px 0; font-size: 12px; color: #64748b;">
                 This email was sent by Gatekeeper.io<br>
-                123 Security Lane, Suite 100<br>
+                237 Security Lane, Suite 100<br>
                 Atlanta, GA 30301, USA
               </p>
               
@@ -125,7 +125,7 @@ export function generateWelcomeEmailHtml(customerName: string, planName: string)
     </p>
     
     <p style="margin: 0 0 10px 0; font-size: 16px; line-height: 1.6; color: #374151;">
-      Email: <a href="mailto:support@gatekeeper.io" style="color: #1565C0; text-decoration: none;">support@gatekeeper.io</a>
+      Email: <a href="mailto:support@gatekeeperio.com" style="color: #1565C0; text-decoration: none;">support@gatekeeperio.com</a>
     </p>
     
     <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #374151;">
