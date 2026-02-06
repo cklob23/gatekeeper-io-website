@@ -76,7 +76,7 @@ export default function DemoPage() {
     })
 
     const result = await sendEmail({
-      to: "sales@gatekeeper.io",
+      to: "support@gatekeeperio.com",
       subject: `Demo Request from ${formData.companyName}`,
       html,
       replyTo: formData.email,
