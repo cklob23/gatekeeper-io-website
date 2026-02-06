@@ -60,7 +60,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
                   <Shield className="h-8 w-8 text-primary" />
                   <div>
                     <h1 className="text-2xl font-bold text-foreground">
-                      Gatekeeper.io {product.name}
+                      Gatekeeper {product.name}
                     </h1>
                     <p className="text-muted-foreground">{product.description}</p>
                   </div>
@@ -112,9 +112,19 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
             {/* Checkout Form */}
             <div>
               <div className="rounded-2xl border border-border bg-card p-8">
-                <h2 className="mb-6 text-xl font-semibold text-foreground">
-                  Start Your Free Trial
-                </h2>
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                    <Shield className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-foreground">
+                      Payment Details
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      Start your 14-day free trial
+                    </p>
+                  </div>
+                </div>
                 <CheckoutForm productId={productId} />
               </div>
             </div>

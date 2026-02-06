@@ -62,8 +62,7 @@ export async function startCheckoutSession(productId: string, customerEmail?: st
 
   // Create Checkout Session with subscription mode for recurring billing
   const session = await stripe.checkout.sessions.create({
-    ui_mode: "embedded",
-    redirect_on_completion: "never",
+    ui_mode: "custom",
     customer_email: customerEmail,
     line_items: [{ price: priceId, quantity: 1 }],
     mode: "subscription",
