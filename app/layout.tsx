@@ -30,6 +30,10 @@ export const metadata: Metadata = {
 
   // -- Keywords --
   keywords: [
+    "Gatekeeper",
+    "login system",
+    "signin system",
+    "sign-in sytem",
     "visitor management system",
     "visitor management software",
     "access management",
@@ -50,7 +54,9 @@ export const metadata: Metadata = {
     "Gatekeeper.io",
     "visitor management",
     "visitor sign-in",
-    "visitor login"
+    "visitor login",
+    "visitor sign-in software",
+    "visitor login software"
   ],
 
   // -- Authors / Creator --
