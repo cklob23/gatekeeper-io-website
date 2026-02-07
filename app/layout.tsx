@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     "location monitoring",
     "SaaS",
     "Gatekeeper.io",
+    "visitor management",
+    "visitor sign-in",
+    "visitor login"
   ],
 
   // -- Authors / Creator --
