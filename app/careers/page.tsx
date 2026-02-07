@@ -26,14 +26,14 @@ const openings = [
     department: "Customer Success",
     location: "Remote (US)",
     type: "Full-time",
-    description: "Help our customers get the most value from Gatekeeper through onboarding, training, and ongoing support."
+    description: "Help our customers get the most value from Gatekeeper.io through onboarding, training, and ongoing support."
   },
   {
     title: "Sales Development Representative",
     department: "Sales",
     location: "Remote (US)",
     type: "Full-time",
-    description: "Connect with organizations to help them discover how Gatekeeper can improve their visitor management."
+    description: "Connect with organizations to help them discover how Gatekeeper.io can improve their visitor management."
   }
 ]
 
@@ -71,10 +71,10 @@ export default function CareersPage() {
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               <div>
-                <h2 className="text-3xl font-bold text-foreground">Why Gatekeeper?</h2>
+                <h2 className="text-3xl font-bold text-foreground">Why Gatekeeper.io?</h2>
                 <div className="mt-6 space-y-4 text-muted-foreground">
                   <p>
-                    At Gatekeeper, you will work on meaningful problems that directly impact 
+                    At Gatekeeper.io, you will work on meaningful problems that directly impact 
                     the safety and security of organizations and the people they serve.
                   </p>
                   <p>
@@ -109,7 +109,7 @@ export default function CareersPage() {
             <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground">Open Positions</h2>
               <p className="mt-4 text-muted-foreground">
-                Find your next opportunity at Gatekeeper
+                Find your next opportunity at Gatekeeper.io
               </p>
             </div>
             <div className="mt-12 grid gap-6">
@@ -122,7 +122,7 @@ export default function CareersPage() {
                         <CardDescription className="mt-2">{job.description}</CardDescription>
                       </div>
                       <Button asChild>
-                        <Link href={`mailto:careers@gatekeeper.io?subject=Application: ${job.title}`}>
+                        <Link href={`mailto:careers@gatekeeperio.com?subject=Application: ${job.title}`}>
                           Apply Now
                         </Link>
                       </Button>
@@ -159,7 +159,7 @@ export default function CareersPage() {
               how you could contribute to our mission.
             </p>
             <Button asChild className="mt-6">
-              <Link href="mailto:careers@gatekeeper.io">Send Your Resume</Link>
+              <Link href="mailto:careers@gatekeeperio.com">Send Your Resume</Link>
             </Button>
           </div>
         </section>

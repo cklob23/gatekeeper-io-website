@@ -21,7 +21,7 @@ const values = [
   {
     icon: Heart,
     title: "Trust",
-    description: "Building trust is at the heart of everything we do. Trust between organizations and their visitors, and trust between Gatekeeper and our customers."
+    description: "Building trust is at the heart of everything we do. Trust between organizations and their visitors, and trust between Gatekeeper.io and our customers."
   }
 ]
 
@@ -36,7 +36,7 @@ const team = [
   },
   {
     name: "Customer Success",
-    description: "Experts committed to helping every customer get the most value from Gatekeeper."
+    description: "Experts committed to helping every customer get the most value from Gatekeeper.io."
   }
 ]
 
@@ -73,7 +73,7 @@ export default function AboutPage() {
                 We set out to build something different: a visitor management platform that 
                 is powerful enough for enterprise security requirements yet simple enough 
                 for any organization to use. Whether you are a church welcoming congregants, 
-                a school protecting students, or a business meeting with clients, Gatekeeper 
+                a school protecting students, or a business meeting with clients, Gatekeeper.io 
                 provides the tools you need.
               </p>
               <p>

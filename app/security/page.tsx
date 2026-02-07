@@ -55,7 +55,7 @@ export default function SecurityPage() {
               <Shield className="h-8 w-8 text-primary-foreground" />
             </div>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-primary-foreground sm:text-5xl">
-              Security at Gatekeeper
+              Security at Gatekeeper.io
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-primary-foreground/90">
               Your data security is our top priority. We employ industry-leading practices 
@@ -158,7 +158,7 @@ export default function SecurityPage() {
               <div>
                 <h3 className="font-semibold text-foreground">Cloud Infrastructure</h3>
                 <p className="mt-2">
-                  Gatekeeper runs on enterprise-grade cloud infrastructure with SOC 2, ISO 27001, 
+                  Gatekeeper.io runs on enterprise-grade cloud infrastructure with SOC 2, ISO 27001, 
                   and FedRAMP certifications. Our infrastructure spans multiple availability zones 
                   for high availability and disaster recovery.
                 </p>
@@ -232,7 +232,7 @@ export default function SecurityPage() {
             </p>
             <div className="mt-6">
               <a
-                href="mailto:security@gatekeeper.io"
+                href="mailto:security@gatekeeperio.com"
                 className="inline-block rounded-md bg-primary px-6 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
               >
                 Contact Security Team

@@ -67,7 +67,7 @@ export default function GDPRPage() {
               </p>
               <p>
                 Whether you are a customer based in the EU or processing data of EU residents, 
-                Gatekeeper provides the tools and safeguards you need to maintain compliance.
+                Gatekeeper.io provides the tools and safeguards you need to maintain compliance.
               </p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function GDPRPage() {
         {/* How We Help */}
         <section className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-2xl font-bold text-foreground">How Gatekeeper Helps You Comply</h2>
+            <h2 className="text-2xl font-bold text-foreground">How Gatekeeper.io Helps You Comply</h2>
             <div className="mt-6 space-y-8">
               <div>
                 <h3 className="text-xl font-semibold text-foreground">Data Processing Agreement</h3>
@@ -113,7 +113,7 @@ export default function GDPRPage() {
               <div>
                 <h3 className="text-xl font-semibold text-foreground">Lawful Basis Support</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Gatekeeper helps you establish and document lawful bases for processing visitor data, 
+                  Gatekeeper.io helps you establish and document lawful bases for processing visitor data, 
                   whether through consent, legitimate interests, or contractual necessity. Our customizable 
                   consent workflows ensure proper documentation.
                 </p>
@@ -161,7 +161,7 @@ export default function GDPRPage() {
           <div className="mx-auto max-w-3xl">
             <h2 className="text-2xl font-bold text-foreground">Technical & Organizational Measures</h2>
             <p className="mt-4 text-muted-foreground">
-              GDPR Article 32 requires appropriate security measures. Gatekeeper implements:
+              GDPR Article 32 requires appropriate security measures. Gatekeeper.io implements:
             </p>
             <ul className="mt-6 list-disc space-y-3 pl-6 text-muted-foreground">
               <li><strong className="text-foreground">Encryption:</strong> AES-256 encryption at rest, TLS 1.3 in transit</li>
@@ -234,12 +234,12 @@ export default function GDPRPage() {
               Data Protection Officer.
             </p>
             <div className="mt-6 space-y-2">
-              <p className="text-muted-foreground">Email: dpo@gatekeeper.io</p>
+              <p className="text-muted-foreground">Email: dpo@gatekeeperio.com</p>
               <p className="text-muted-foreground">Address: 123 Security Lane, Atlanta, GA 30301</p>
             </div>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <a
-                href="mailto:dpo@gatekeeper.io"
+                href="mailto:dpo@gatekeeperio.com"
                 className="inline-block rounded-md bg-primary px-6 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
               >
                 Contact DPO

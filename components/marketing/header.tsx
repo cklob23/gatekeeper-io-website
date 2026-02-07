@@ -104,7 +104,7 @@ export function Header() {
             </Link>
             <div className="flex flex-col gap-2 pt-4">
               <Button variant="outline" asChild className="w-full bg-transparent">
-                <Link href="/demo">Sign In</Link>
+                <Link href="/demo">Request a Demo</Link>
               </Button>
               <Button asChild className="w-full">
                 <Link href="/pricing">Start Free Trial</Link>

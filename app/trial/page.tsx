@@ -61,7 +61,7 @@ export default function TrialPage() {
 
     const result = await sendEmail({
       to: "support@gatekeeperio.com",
-      subject: `[Gatekeeper Trial Interest] ${email}`,
+      subject: `[Gatekeeper.io Trial Interest] ${email}`,
       html,
       replyTo: email,
     })
@@ -92,10 +92,10 @@ export default function TrialPage() {
           {/* Left Side - Value Proposition */}
           <div className="flex flex-col justify-center">
             <h1 className="text-balance text-4xl font-bold tracking-tight text-primary-foreground md:text-5xl">
-              Secure your facility with Gatekeeper.
+              Secure your facility with Gatekeeper.io.
             </h1>
             <p className="mt-6 text-lg text-primary-foreground/80">
-              Gatekeeper is the trusted visitor management platform for organizations
+              Gatekeeper.io is the trusted visitor management platform for organizations
               that prioritize security, accountability, and compliance.
             </p>
 
@@ -154,7 +154,7 @@ export default function TrialPage() {
                     onCheckedChange={(checked) => setMarketingConsent(checked === true)}
                   />
                   <Label htmlFor="marketing" className="text-sm leading-tight text-muted-foreground">
-                    I agree to receive marketing communications from Gatekeeper.
+                    I agree to receive marketing communications from Gatekeeper.io.
                   </Label>
                 </div>
 

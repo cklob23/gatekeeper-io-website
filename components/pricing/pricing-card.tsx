@@ -56,7 +56,7 @@ export function PricingCard({ product }: PricingCardProps) {
         size="lg"
       >
         {isEnterprise ? (
-          <Link href="mailto:sales@gatekeeper.io">{product.cta}</Link>
+          <Link href="mailto:support@gatekeeperio.com">{product.cta}</Link>
         ) : (
           <Link href={`/trial?plan=${product.id}`}>{product.cta}</Link>
         )}

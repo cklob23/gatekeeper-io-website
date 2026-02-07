@@ -64,7 +64,7 @@ export default function BlogPage() {
         <section className="bg-primary px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-primary-foreground sm:text-5xl">
-              Gatekeeper Blog
+              Gatekeeper.io Blog
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-primary-foreground/90">
               Insights, guides, and best practices for visitor management and organizational security.

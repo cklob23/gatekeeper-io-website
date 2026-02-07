@@ -72,15 +72,15 @@ export function UIShowcase() {
         {/* Browser frame */}
         <div className="mx-auto max-w-5xl overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
           {/* Browser header */}
-          <div className="flex items-center gap-3 border-b border-border bg-muted/50 px-4 py-3">
+          <div className="flex items-center gap-3 border-b border-border bg-muted/50 px-3">
             <div className="flex gap-2">
               <div className="h-3 w-3 rounded-full bg-red-400" />
               <div className="h-3 w-3 rounded-full bg-yellow-400" />
               <div className="h-3 w-3 rounded-full bg-green-400" />
             </div>
-            <div className="flex-1 rounded-md bg-background/60 px-4 py-1.5 text-sm text-muted-foreground">
+            <div className="flex-1 rounded-md bg-background/60 px-4 py-1 text-sm text-muted-foreground">
               <span className="text-green-600 mr-1">https://</span>
-              app.gatekeeperio.com/{screenshots[activeIndex].route}
+              gatekeeperio.com/{screenshots[activeIndex].route}
             </div>
           </div>
 

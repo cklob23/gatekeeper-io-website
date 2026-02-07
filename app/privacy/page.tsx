@@ -43,7 +43,7 @@ export default function PrivacyPage() {
 
             <h3 className="mt-6 text-xl font-semibold text-foreground">1.2 Automatically Collected Information</h3>
             <p className="text-muted-foreground">
-              When you use Gatekeeper, we automatically collect:
+              When you use Gatekeeper.io, we automatically collect:
             </p>
             <ul className="list-disc space-y-2 pl-6 text-muted-foreground">
               <li>Device information (browser type, operating system)</li>
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
 
             <h2 className="mt-12 text-2xl font-bold text-foreground">8. Children&apos;s Privacy</h2>
             <p className="text-muted-foreground">
-              Gatekeeper is not intended for children under 16. We do not knowingly collect personal information 
+              Gatekeeper.io is not intended for children under 16. We do not knowingly collect personal information 
               from children. If you believe we have collected information from a child, please contact us immediately.
             </p>
 
@@ -127,7 +127,7 @@ export default function PrivacyPage() {
             </p>
             <address className="mt-4 not-italic text-muted-foreground">
               Gatekeeper.io<br />
-              Email: privacy@gatekeeper.io<br />
+              Email: privacy@gatekeeperio.com<br />
               Address: 123 Security Lane, Atlanta, GA 30301
             </address>
           </div>

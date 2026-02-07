@@ -81,7 +81,7 @@ export default function PricingPage() {
                 },
                 {
                   question: "How does per-location pricing work?",
-                  answer: "You pay per physical location where Gatekeeper is deployed. A location could be a building, campus, office, or facility. Multi-location discounts are available for 5+ locations."
+                  answer: "You pay per physical location where Gatekeeper.io is deployed. A location could be a building, campus, office, or facility. Multi-location discounts are available for 5+ locations."
                 },
                 {
                   question: "Can I change plans later?",

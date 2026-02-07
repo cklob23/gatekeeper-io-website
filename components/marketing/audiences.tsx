@@ -36,7 +36,7 @@ export function Audiences() {
             Built for Organizations That Value Trust
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            From churches to corporate offices, Gatekeeper serves organizations where accountability matters.
+            From churches to corporate offices, Gatekeeper.io serves organizations where accountability matters.
           </p>
         </div>
 

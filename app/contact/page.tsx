@@ -81,7 +81,7 @@ export default function ContactPage() {
 
     const result = await sendEmail({
       to: "support@gatekeeperio.com",
-      subject: `[Gatekeeper Contact] ${subjectLine}`,
+      subject: `[Gatekeeper.io Contact] ${subjectLine}`,
       html,
       replyTo: formData.email,
     })

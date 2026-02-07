@@ -223,7 +223,7 @@ function RegistrationForm() {
             </div>
             <div>
               <h1 className="text-3xl font-bold text-primary-foreground">
-                Get started with Gatekeeper
+                Get started with Gatekeeper.io
               </h1>
               <p className="text-primary-foreground/80">
                 Enter your information to start your trial
@@ -445,13 +445,13 @@ function RegistrationForm() {
                     <Link href="/product-terms" className="text-primary underline hover:text-primary/80">
                       Product and Services Addendum
                     </Link>{" "}
-                    and that Gatekeeper will collect and use the information you provide in accordance 
-                    with Gatekeeper&apos;s{" "}
+                    and that Gatekeeper.io will collect and use the information you provide in accordance 
+                    with Gatekeeper.io&apos;s{" "}
                     <Link href="/privacy" className="text-primary underline hover:text-primary/80">
                       Privacy Policy
                     </Link>
-                    . Your information may be shared with a Gatekeeper Partner in order to provide 
-                    product expertise, training or support for Gatekeeper solutions. If you do not 
+                    . Your information may be shared with a Gatekeeper.io Partner in order to provide 
+                    product expertise, training or support for Gatekeeper.io solutions. If you do not 
                     agree to these terms, do not click &quot;Start My Trial&quot; to access the software.
                   </span>
                 </label>

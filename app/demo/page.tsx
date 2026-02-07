@@ -110,7 +110,7 @@ export default function DemoPage() {
               </div>
               <h2 className="text-2xl font-bold text-foreground">Demo Request Received</h2>
               <p className="mt-4 text-muted-foreground">
-                Thank you for your interest in Gatekeeper! We&apos;ll review your request and reach out within 1 business day to schedule your personalized demo.
+                Thank you for your interest in Gatekeeper.io! We&apos;ll review your request and reach out within 1 business day to schedule your personalized demo.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <Button asChild>
@@ -152,7 +152,7 @@ export default function DemoPage() {
             </h1>
             
             <p className="mt-6 text-lg leading-relaxed text-primary-foreground/80">
-              See how Gatekeeper can transform your visitor management process. 
+              See how Gatekeeper.io can transform your visitor management process. 
               Our team will walk you through the platform and answer all your questions.
             </p>
 
@@ -176,7 +176,7 @@ export default function DemoPage() {
                 <div>
                   <h3 className="font-semibold text-primary-foreground">Expert Guidance</h3>
                   <p className="mt-1 text-sm text-primary-foreground/70">
-                    Our specialists will help you understand how Gatekeeper fits your security requirements.
+                    Our specialists will help you understand how Gatekeeper.io fits your security requirements.
                   </p>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function DemoPage() {
 
             <div className="mt-12 rounded-lg border border-primary-foreground/20 bg-primary-foreground/5 p-6">
               <p className="text-sm italic text-primary-foreground/80">
-                &ldquo;The Gatekeeper demo was exactly what we needed. They showed us how to set up 
+                &ldquo;The Gatekeeper.io demo was exactly what we needed. They showed us how to set up 
                 visitor pre-registration and badge printing for our church - it took less than 
                 30 minutes to understand everything.&rdquo;
               </p>

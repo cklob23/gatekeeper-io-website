@@ -10,16 +10,16 @@ const faqCategories = [
     title: "Getting Started",
     questions: [
       {
-        q: "How do I set up Gatekeeper for my organization?",
+        q: "How do I set up Gatekeeper.io for my organization?",
         a: "After signing up, you will be guided through a simple setup wizard. You will configure your location details, customize your check-in flow, and invite team members. Most organizations are up and running within 30 minutes."
       },
       {
         q: "What hardware do I need?",
-        a: "Gatekeeper works on any tablet (iPad or Android) or computer with a web browser. For badge printing, we support most thermal label printers. A camera is optional but recommended for capturing visitor photos."
+        a: "Gatekeeper.io works on any tablet (iPad or Android) or computer with a web browser. For badge printing, we support most thermal label printers. A camera is optional but recommended for capturing visitor photos."
       },
       {
-        q: "Can I try Gatekeeper before purchasing?",
-        a: "Yes! We offer a 14-day free trial with full access to all features. No credit card required to start. You can also schedule a demo with our team to see Gatekeeper in action."
+        q: "Can I try Gatekeeper.io before purchasing?",
+        a: "Yes! We offer a 14-day free trial with full access to all features. No credit card required to start. You can also schedule a demo with our team to see Gatekeeper.io in action."
       }
     ]
   },
@@ -31,7 +31,7 @@ const faqCategories = [
         a: "Absolutely. You can customize the welcome screen, add your logo, create custom fields, configure different visitor types, and set up unique workflows for different scenarios."
       },
       {
-        q: "Does Gatekeeper support multiple locations?",
+        q: "Does Gatekeeper.io support multiple locations?",
         a: "Yes, our Pro and Enterprise plans support unlimited locations. Each location can have its own settings while sharing a central admin dashboard for oversight."
       },
       {
@@ -95,14 +95,14 @@ const supportOptions = [
     icon: Mail,
     title: "Email Support",
     description: "Get help via email within 24 hours",
-    href: "mailto:support@gatekeeper.io",
+    href: "mailto:support@gatekeeperio.com",
     linkText: "Send Email"
   },
   {
     icon: Phone,
     title: "Phone Support",
     description: "Talk to a support specialist",
-    href: "tel:+15551234567",
+    href: "tel:+12792019504",
     linkText: "Call Now"
   }
 ]
@@ -158,7 +158,7 @@ export default function HelpPage() {
           <div className="mx-auto max-w-4xl">
             <h2 className="text-center text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
             <p className="mt-4 text-center text-muted-foreground">
-              Quick answers to the most common questions about Gatekeeper
+              Quick answers to the most common questions about Gatekeeper.io
             </p>
 
             <div className="mt-12 space-y-8">

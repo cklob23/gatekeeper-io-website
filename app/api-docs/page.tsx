@@ -111,7 +111,7 @@ export default function APIDocsPage() {
               API Reference
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-primary-foreground/90">
-              Build custom integrations with the Gatekeeper REST API. 
+              Build custom integrations with the Gatekeeper.io REST API. 
               Automate workflows, sync data, and extend functionality.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -157,7 +157,7 @@ export default function APIDocsPage() {
               </pre>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
-              You can generate API keys from your Gatekeeper dashboard under Settings → API Keys.
+              You can generate API keys from your Gatekeeper.io dashboard under Settings → API Keys.
               Keep your API keys secure and never expose them in client-side code.
             </p>
           </div>
@@ -215,7 +215,7 @@ export default function APIDocsPage() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold text-foreground">Ready to build?</h2>
             <p className="mt-4 text-muted-foreground">
-              Create your API key and start integrating Gatekeeper today.
+              Create your API key and start integrating Gatekeeper.io today.
             </p>
             <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Link

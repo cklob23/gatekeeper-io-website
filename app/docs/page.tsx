@@ -8,7 +8,7 @@ const categories = [
   {
     icon: Rocket,
     title: "Getting Started",
-    description: "Learn the basics of setting up and configuring Gatekeeper for your organization.",
+    description: "Learn the basics of setting up and configuring Gatekeeper.io for your organization.",
     links: [
       { label: "Quick Start Guide", href: "#" },
       { label: "Installation", href: "#" },
@@ -30,7 +30,7 @@ const categories = [
   {
     icon: Settings,
     title: "Administration",
-    description: "Configure and customize Gatekeeper to meet your organization's needs.",
+    description: "Configure and customize Gatekeeper.io to meet your organization's needs.",
     links: [
       { label: "User Management", href: "#" },
       { label: "Location Settings", href: "#" },
@@ -52,7 +52,7 @@ const categories = [
   {
     icon: Zap,
     title: "Integrations",
-    description: "Connect Gatekeeper with your existing tools and workflows.",
+    description: "Connect Gatekeeper.io with your existing tools and workflows.",
     links: [
       { label: "SSO Setup", href: "#" },
       { label: "Calendar Integration", href: "#" },
@@ -88,7 +88,7 @@ export default function DocsPage() {
               Documentation
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-primary-foreground/90">
-              Everything you need to get the most out of Gatekeeper. From setup to advanced features.
+              Everything you need to get the most out of Gatekeeper.io. From setup to advanced features.
             </p>
             <div className="mt-8">
               <input

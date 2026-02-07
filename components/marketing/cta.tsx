@@ -12,7 +12,7 @@ export function CTA() {
             Ready to Secure Your Space?
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-primary-foreground/80">
-            Join organizations that trust Gatekeeper for visitor management. Start your free trial today with no credit card required.
+            Join organizations that trust Gatekeeper.io for visitor management. Start your free trial today with no credit card required.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button size="lg" variant="secondary" asChild>

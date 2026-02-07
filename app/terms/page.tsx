@@ -52,7 +52,7 @@ export default function TermsPage() {
 
             <h2 className="mt-12 text-2xl font-bold text-foreground">3. Account Registration</h2>
             <p className="text-muted-foreground">
-              To use Gatekeeper, you must create an account and provide accurate, complete information. 
+              To use Gatekeeper.io, you must create an account and provide accurate, complete information. 
               You are responsible for maintaining the confidentiality of your account credentials and 
               for all activities under your account. You must notify us immediately of any unauthorized use.
             </p>
@@ -90,7 +90,7 @@ export default function TermsPage() {
 
             <h2 className="mt-12 text-2xl font-bold text-foreground">6. Data Ownership</h2>
             <p className="text-muted-foreground">
-              You retain ownership of all data you enter into Gatekeeper (&quot;Customer Data&quot;). 
+              You retain ownership of all data you enter into Gatekeeper.io (&quot;Customer Data&quot;). 
               You grant us a limited license to use Customer Data solely to provide the services. 
               We will not access, use, or disclose Customer Data except as necessary to provide 
               the services or as required by law.
@@ -153,8 +153,8 @@ export default function TermsPage() {
             </p>
             <address className="mt-4 not-italic text-muted-foreground">
               Gatekeeper.io<br />
-              Email: legal@gatekeeper.io<br />
-              Address: 123 Security Lane, Atlanta, GA 30301
+              Email: legal@gatekeepeio.com<br />
+              Address: 237 Security Lane, Atlanta, GA 30301
             </address>
           </div>
         </section>
