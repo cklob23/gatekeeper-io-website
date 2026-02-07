@@ -22,7 +22,7 @@ export function Hero() {
           </h1>
           
           <p className="mt-6 text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Gatekeeper is a secure visitor and access management platform built for organizations that value accountability, stewardship, and compliance. Know who enters your space, when, and why.
+            Gatekeeper.io is a secure visitor and access management platform built for organizations that value accountability, stewardship, and compliance. Know who enters your space, when, and why.
           </p>
           
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

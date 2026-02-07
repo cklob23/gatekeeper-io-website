@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeper.io"
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeperio.com"
 
 // Shared email wrapper with header and footer
 function emailWrapper(content: string): string {

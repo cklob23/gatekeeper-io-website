@@ -2,7 +2,7 @@ import { Star } from "lucide-react"
 
 const testimonials = [
   {
-    quote: "Gatekeeper transformed how we manage visitor check-in at our church. Parents feel safer knowing we have a proper system tracking who enters our children's areas.",
+    quote: "Gatekeeper.io transformed how we manage visitor check-in at our church. Parents feel safer knowing we have a proper system tracking who enters our children's areas.",
     author: "Sarah Mitchell",
     role: "Children's Ministry Director",
     organization: "Grace Community Church"
@@ -14,7 +14,7 @@ const testimonials = [
     organization: "Precision Manufacturing Co."
   },
   {
-    quote: "Finally, a visitor management system that doesn't cost a fortune. Gatekeeper gives us enterprise features at a price that makes sense for our school.",
+    quote: "Finally, a visitor management system that doesn't cost a fortune. Gatekeeper.io gives us enterprise features at a price that makes sense for our school.",
     author: "Dr. Amanda Rodriguez",
     role: "Principal",
     organization: "Westside Academy"
@@ -30,7 +30,7 @@ export function Testimonials() {
             Trusted by Organizations Like Yours
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            See why churches, schools, and businesses choose Gatekeeper for their visitor management needs.
+            See why churches, schools, and businesses choose Gatekeeper.io for their visitor management needs.
           </p>
         </div>
 
