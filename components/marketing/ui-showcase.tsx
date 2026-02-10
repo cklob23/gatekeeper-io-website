@@ -78,7 +78,7 @@ export function UIShowcase() {
               <div className="h-3 w-3 rounded-full bg-yellow-400" />
               <div className="h-3 w-3 rounded-full bg-green-400" />
             </div>
-            <div className="flex-1 rounded-md bg-background/60 px-4 py-1 text-sm text-muted-foreground">
+            <div className="flex-1 rounded-md bg-background/60 px-4 py-1 text-xs text-muted-foreground">
               <span className="text-green-600 mr-1">https://</span>
               gatekeeperio.com/{screenshots[activeIndex].route}
             </div>
