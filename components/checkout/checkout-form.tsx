@@ -1,7 +1,5 @@
 "use client"
 
-import { useMemo } from "react"
-
 import React, { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import {
@@ -18,6 +16,9 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 
 interface CheckoutFormProps {
   productId: string
+  locationCount?: number
+  addOnIds?: string[]
+  customerEmail?: string
 }
 
 const appearance = {
@@ -140,7 +141,7 @@ function CheckoutFormInner() {
   )
 }
 
-export function CheckoutForm({ productId }: CheckoutFormProps) {
+export function CheckoutForm({ productId, locationCount = 1, addOnIds = [], customerEmail }: CheckoutFormProps) {
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const fetchedRef = useRef(false)
@@ -149,7 +150,12 @@ export function CheckoutForm({ productId }: CheckoutFormProps) {
     if (fetchedRef.current) return
     fetchedRef.current = true
 
-    startCheckoutSession(productId)
+    startCheckoutSession({
+      productId,
+      locationCount,
+      addOnIds,
+      customerEmail,
+    })
       .then((secret) => {
         if (!secret) {
           setError("Failed to create checkout session")
@@ -160,7 +166,7 @@ export function CheckoutForm({ productId }: CheckoutFormProps) {
       .catch((err) => {
         setError(err instanceof Error ? err.message : "Something went wrong")
       })
-  }, [productId])
+  }, [productId, locationCount, addOnIds, customerEmail])
 
   if (error) {
     return (

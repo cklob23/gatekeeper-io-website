@@ -5,7 +5,7 @@ import React from "react"
 import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
-import { Shield, ArrowLeft, User } from "lucide-react"
+import { Shield, ArrowLeft, User, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -25,6 +25,17 @@ const companySizes = [
   { value: "201-500", label: "201-500 employees" },
   { value: "501-1000", label: "501-1000 employees" },
   { value: "1000+", label: "1000+ employees" },
+]
+
+const locationCounts = [
+  { value: "1", label: "1 location" },
+  { value: "2", label: "2 locations" },
+  { value: "3", label: "3 locations" },
+  { value: "4", label: "4 locations" },
+  { value: "5", label: "5 locations" },
+  { value: "6-10", label: "6-10 locations" },
+  { value: "11-25", label: "11-25 locations" },
+  { value: "25+", label: "25+ locations" },
 ]
 
 const countries = [
@@ -93,16 +104,17 @@ const usStates = [
 function RegistrationForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  
+
   const email = searchParams.get("email") || ""
   const plan = searchParams.get("plan") || "pro"
-  
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     phone: "",
     companyName: "",
     companySize: "",
+    locationCount: "1",
     country: "",
     state: "",
     password: "",
@@ -148,15 +160,16 @@ function RegistrationForm() {
     if (!formData.lastName.trim()) newErrors.lastName = "Last name is required"
     if (!formData.companyName.trim()) newErrors.companyName = "Company name is required"
     if (!formData.companySize) newErrors.companySize = "Company size is required"
+    if (!formData.locationCount) newErrors.locationCount = "Number of locations is required"
     if (!formData.country) newErrors.country = "Country is required"
     if (formData.country === "US" && !formData.state) newErrors.state = "State is required"
-    
+
     // Validate password
     const passwordIssues = validatePassword(formData.password)
     if (passwordIssues.length > 0) {
       newErrors.password = `Password must include: ${passwordIssues.join(", ")}`
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match"
     }
@@ -177,15 +190,16 @@ function RegistrationForm() {
     // 1. Create the user account
     // 2. Set up their trial
     // 3. Redirect to checkout or dashboard
-    
+
     // For now, redirect to Stripe checkout with the user data
     const checkoutParams = new URLSearchParams({
       email,
       firstName: formData.firstName,
       lastName: formData.lastName,
       company: formData.companyName,
+      locations: formData.locationCount,
     })
-    
+
     router.push(`/checkout/${plan}?${checkoutParams.toString()}`)
   }
 
@@ -223,7 +237,7 @@ function RegistrationForm() {
             </div>
             <div>
               <h1 className="text-3xl font-bold text-primary-foreground">
-                Get started with Gatekeeper.io
+                Get started with Gatekeeper
               </h1>
               <p className="text-primary-foreground/80">
                 Enter your information to start your trial
@@ -331,6 +345,35 @@ function RegistrationForm() {
                 </div>
               </div>
 
+              {/* Number of Locations */}
+              <div>
+                <Label htmlFor="locationCount" className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  How many locations will use this software?*
+                </Label>
+                <Select
+                  value={formData.locationCount}
+                  onValueChange={(value) => updateField("locationCount", value)}
+                >
+                  <SelectTrigger className="mt-2">
+                    <SelectValue placeholder="Select number of locations" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {locationCounts.map((loc) => (
+                      <SelectItem key={loc.value} value={loc.value}>
+                        {loc.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <p className="mt-1.5 text-xs text-muted-foreground">
+                  Each location is billed separately. You can add more locations later.
+                </p>
+                {errors.locationCount && (
+                  <p className="mt-1 text-sm text-destructive">{errors.locationCount}</p>
+                )}
+              </div>
+
               {/* Location Fields */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
@@ -405,7 +448,7 @@ function RegistrationForm() {
                     className="mt-2"
                   />
                   <p className="mt-1 text-xs text-muted-foreground">
-                    Password must be 8-32 characters and include a lowercase letter, 
+                    Password must be 8-32 characters and include a lowercase letter,
                     an uppercase letter, a number and a special character.
                   </p>
                   {errors.password && (
@@ -445,13 +488,13 @@ function RegistrationForm() {
                     <Link href="/product-terms" className="text-primary underline hover:text-primary/80">
                       Product and Services Addendum
                     </Link>{" "}
-                    and that Gatekeeper.io will collect and use the information you provide in accordance 
-                    with Gatekeeper.io&apos;s{" "}
+                    and that Gatekeeper will collect and use the information you provide in accordance
+                    with Gatekeeper&apos;s{" "}
                     <Link href="/privacy" className="text-primary underline hover:text-primary/80">
                       Privacy Policy
                     </Link>
-                    . Your information may be shared with a Gatekeeper.io Partner in order to provide 
-                    product expertise, training or support for Gatekeeper.io solutions. If you do not 
+                    . Your information may be shared with a Gatekeeper Partner in order to provide
+                    product expertise, training or support for Gatekeeper solutions. If you do not
                     agree to these terms, do not click &quot;Start My Trial&quot; to access the software.
                   </span>
                 </label>
