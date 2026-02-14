@@ -176,8 +176,8 @@ export default function TrialPage() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="starter">Starter - $29/location/month</SelectItem>
-                      <SelectItem value="pro">Pro - $59/location/month (Most Popular)</SelectItem>
+                      <SelectItem value="starter">Starter - $39/location/month</SelectItem>
+                      <SelectItem value="pro">Pro - $79/location/month (Most Popular)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
