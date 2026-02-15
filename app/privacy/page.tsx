@@ -128,7 +128,7 @@ export default function PrivacyPage() {
             <address className="mt-4 not-italic text-muted-foreground">
               Gatekeeper.io<br />
               Email: privacy@gatekeeperio.com<br />
-              Address: 123 Security Lane, Atlanta, GA 30301
+              Address: 237 Security Lane, Atlanta, GA 30301
             </address>
           </div>
         </section>
