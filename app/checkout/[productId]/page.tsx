@@ -39,7 +39,7 @@ export default async function CheckoutPage({
   }
 
   if (product.id === "enterprise") {
-    redirect("mailto:sales@gatekeeper.io")
+    redirect("mailto:support@gatekeeperio.com")
   }
 
   // Parse location count from search params (from trial registration)

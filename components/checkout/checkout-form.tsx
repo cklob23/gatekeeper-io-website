@@ -85,6 +85,8 @@ const appearance = {
 
 function CheckoutFormInner() {
   const router = useRouter()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const checkoutState = useCheckout()
 
   if (checkoutState.type === "loading") {
@@ -108,13 +110,21 @@ function CheckoutFormInner() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitError(null)
 
-    const result = await checkout.confirm()
+    try {
+      const result = await checkout.confirm()
 
-    if (result.type === "error") {
-      console.error("[v0] Payment error:", result.error.message)
-    } else {
-      router.push("/checkout/success")
+      if (result.type === "error") {
+        setSubmitError(result.error.message)
+        setIsSubmitting(false)
+      } else {
+        router.push("/checkout/success")
+      }
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "An unexpected error occurred")
+      setIsSubmitting(false)
     }
   }
 
@@ -122,13 +132,29 @@ function CheckoutFormInner() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <PaymentElement />
 
+      {submitError && (
+        <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-3">
+          <p className="text-sm text-destructive">{submitError}</p>
+        </div>
+      )}
+
       <Button
         type="submit"
         className="w-full py-6 text-base font-semibold"
         size="lg"
+        disabled={isSubmitting}
       >
-        <Lock className="mr-2 h-4 w-4" />
-        Start Free Trial
+        {isSubmitting ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Processing...
+          </>
+        ) : (
+          <>
+            <Lock className="mr-2 h-4 w-4" />
+            Start Free Trial
+          </>
+        )}
       </Button>
 
       <div className="flex items-center justify-center gap-3 pt-2">
@@ -155,6 +181,7 @@ export function CheckoutForm({ productId, locationCount = 1, addOnIds = [], cust
       locationCount,
       addOnIds,
       customerEmail,
+      origin: window.location.origin,
     })
       .then((secret) => {
         if (!secret) {

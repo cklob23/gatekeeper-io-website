@@ -58,10 +58,11 @@ interface CheckoutOptions {
   locationCount?: number
   addOnIds?: string[]
   customerEmail?: string
+  origin?: string
 }
 
 export async function startCheckoutSession(options: CheckoutOptions) {
-  const { productId, locationCount = 1, addOnIds = [], customerEmail } = options
+  const { productId, locationCount = 1, addOnIds = [], customerEmail, origin } = options
 
   const product = PRODUCTS.find((p) => p.id === productId)
   if (!product) {
@@ -100,12 +101,15 @@ export async function startCheckoutSession(options: CheckoutOptions) {
     lineItems.push({ price: addOnPriceId, quantity })
   }
 
+  const baseUrl = origin || process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeperio.com"
+
   // Create Checkout Session with subscription mode for recurring billing
   const session = await stripe.checkout.sessions.create({
     ui_mode: "custom",
     customer_email: customerEmail,
     line_items: lineItems,
     mode: "subscription",
+    return_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     automatic_tax: { enabled: true },
     subscription_data: {
       trial_period_days: 14,
