@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
 
       // Send the welcome email via internal API call
       const html = generateWelcomeEmailHtml(customerName, planName)
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeper.io"
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gatekeeperio.com"
       
       try {
         const emailResponse = await fetch(`${baseUrl}/api/email`, {
