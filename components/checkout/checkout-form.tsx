@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import {
   CheckoutProvider,
@@ -19,6 +19,7 @@ interface CheckoutFormProps {
   locationCount?: number
   addOnIds?: string[]
   customerEmail?: string
+  disabled?: boolean
 }
 
 const appearance = {
@@ -83,7 +84,7 @@ const appearance = {
   },
 }
 
-function CheckoutFormInner() {
+function CheckoutFormInner({ disabled }: { disabled?: boolean }) {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
@@ -142,13 +143,15 @@ function CheckoutFormInner() {
         type="submit"
         className="w-full py-6 text-base font-semibold"
         size="lg"
-        disabled={isSubmitting}
+        disabled={isSubmitting || disabled}
       >
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Processing...
           </>
+        ) : disabled ? (
+          "Update payment amount first"
         ) : (
           <>
             <Lock className="mr-2 h-4 w-4" />
@@ -167,14 +170,12 @@ function CheckoutFormInner() {
   )
 }
 
-export function CheckoutForm({ productId, locationCount = 1, addOnIds = [], customerEmail }: CheckoutFormProps) {
+export function CheckoutForm({ productId, locationCount = 1, addOnIds = [], customerEmail, disabled }: CheckoutFormProps) {
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const fetchedRef = useRef(false)
 
   useEffect(() => {
-    if (fetchedRef.current) return
-    fetchedRef.current = true
+    let cancelled = false
 
     startCheckoutSession({
       productId,
@@ -184,6 +185,7 @@ export function CheckoutForm({ productId, locationCount = 1, addOnIds = [], cust
       origin: window.location.origin,
     })
       .then((secret) => {
+        if (cancelled) return
         if (!secret) {
           setError("Failed to create checkout session")
           return
@@ -191,8 +193,13 @@ export function CheckoutForm({ productId, locationCount = 1, addOnIds = [], cust
         setClientSecret(secret)
       })
       .catch((err) => {
+        if (cancelled) return
         setError(err instanceof Error ? err.message : "Something went wrong")
       })
+
+    return () => {
+      cancelled = true
+    }
   }, [productId, locationCount, addOnIds, customerEmail])
 
   if (error) {
@@ -220,7 +227,7 @@ export function CheckoutForm({ productId, locationCount = 1, addOnIds = [], cust
         elementsOptions: { appearance },
       }}
     >
-      <CheckoutFormInner />
+      <CheckoutFormInner disabled={disabled} />
     </CheckoutProvider>
   )
 }

@@ -33,8 +33,11 @@ export function CheckoutContent({
         Math.max(1, initialLocationCount)
     )
     const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
-    const [checkoutKey, setCheckoutKey] = useState(0)
     const [isCheckoutReady, setIsCheckoutReady] = useState(false)
+    const [checkoutKey, setCheckoutKey] = useState(0)
+    // Track the values that were used to create the current Stripe session
+    const [committedLocationCount, setCommittedLocationCount] = useState(initialLocationCount)
+    const [committedAddOns, setCommittedAddOns] = useState<string[]>([])
 
     const toggleAddOn = (addOnId: string) => {
         setSelectedAddOns((prev) =>
@@ -51,6 +54,12 @@ export function CheckoutContent({
     const decrementLocations = () => {
         setLocationCount((prev) => Math.max(prev - 1, 1))
     }
+
+    // Check if the current selections differ from what the Stripe session was created with
+    const hasUnsavedChanges =
+        isCheckoutReady &&
+        (locationCount !== committedLocationCount ||
+            JSON.stringify([...selectedAddOns].sort()) !== JSON.stringify([...committedAddOns].sort()))
 
     // Calculate totals
     const baseMonthlyCost = (product.priceInCents / 100) * locationCount
@@ -69,6 +78,8 @@ export function CheckoutContent({
         }).format(amount)
 
     const handleProceedToPayment = () => {
+        setCommittedLocationCount(locationCount)
+        setCommittedAddOns([...selectedAddOns])
         setCheckoutKey((prev) => prev + 1)
         setIsCheckoutReady(true)
     }
@@ -287,7 +298,7 @@ export function CheckoutContent({
                             </div>
                         </div>
 
-                        {!isCheckoutReady && (
+                        {!isCheckoutReady ? (
                             <Button
                                 onClick={handleProceedToPayment}
                                 className="mt-6 w-full py-6 text-base font-semibold"
@@ -295,34 +306,53 @@ export function CheckoutContent({
                             >
                                 Proceed to Payment
                             </Button>
-                        )}
+                        ) : hasUnsavedChanges ? (
+                            <Button
+                                onClick={handleProceedToPayment}
+                                className="mt-6 w-full py-6 text-base font-semibold"
+                                size="lg"
+                                variant="default"
+                            >
+                                Update Payment Amount
+                            </Button>
+                        ) : null}
                     </div>
                 </div>
 
                 {/* Right Column - Payment Form */}
                 <div>
                     {isCheckoutReady ? (
-                        <div className="sticky top-8 rounded-2xl border border-border bg-card p-8">
-                            <div className="mb-6 flex items-center gap-3">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                                    <Shield className="h-5 w-5 text-primary" />
-                                </div>
-                                <div>
-                                    <h2 className="text-xl font-semibold text-foreground">
-                                        Payment Details
-                                    </h2>
-                                    <p className="text-sm text-muted-foreground">
-                                        Start your 14-day free trial
+                        <div className="sticky top-8 space-y-4">
+                            {hasUnsavedChanges && (
+                                <div className="rounded-xl border border-amber-300 bg-amber-50 p-4">
+                                    <p className="text-sm font-medium text-amber-800">
+                                        You changed your plan configuration. Click "Update Payment Amount" below the order summary to refresh the payment form with the updated total.
                                     </p>
                                 </div>
+                            )}
+                            <div className="rounded-2xl border border-border bg-card p-8">
+                                <div className="mb-6 flex items-center gap-3">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                                        <Shield className="h-5 w-5 text-primary" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl font-semibold text-foreground">
+                                            Payment Details
+                                        </h2>
+                                        <p className="text-sm text-muted-foreground">
+                                            Start your 14-day free trial
+                                        </p>
+                                    </div>
+                                </div>
+                                <CheckoutForm
+                                    key={checkoutKey}
+                                    productId={productId}
+                                    locationCount={committedLocationCount}
+                                    addOnIds={committedAddOns}
+                                    customerEmail={customerEmail}
+                                    disabled={hasUnsavedChanges}
+                                />
                             </div>
-                            <CheckoutForm
-                                key={checkoutKey}
-                                productId={productId}
-                                locationCount={locationCount}
-                                addOnIds={selectedAddOns}
-                                customerEmail={customerEmail}
-                            />
                         </div>
                     ) : (
                         <div className="sticky top-8 rounded-2xl border border-dashed border-border bg-card p-12 text-center">
