@@ -3,7 +3,7 @@ import { Shield } from "lucide-react"
 
 const footerLinks = {
   product: [
-    { label: "Features", href: "/#features" },
+    { label: "Features", href: "#features" },
     { label: "Pricing", href: "/pricing" },
     { label: "Schedule Demo", href: "/demo" },
     { label: "Free Trial", href: "/trial" }
@@ -17,7 +17,7 @@ const footerLinks = {
   resources: [
     { label: "Documentation", href: "/docs" },
     { label: "Help Center", href: "/help" },
-    { label: "API Reference", href: "/api-docs" },
+
     { label: "Status", href: "/status" }
   ],
   legal: [

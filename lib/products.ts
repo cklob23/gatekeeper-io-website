@@ -48,7 +48,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "starter",
     name: "Starter",
-    stripeProductId: "prod_TygYUi7fd8Sl7i",
+    stripeProductId: "prod_TrfdGuVY2n097s",
     description: "Perfect for churches, small offices, and single locations",
     priceInCents: 3900, // $39.00
     priceDisplay: "$39",
@@ -68,7 +68,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "pro",
     name: "Pro",
-    stripeProductId: "prod_TygQb8S5xn9rqF",
+    stripeProductId: "prod_TrfkBUCjxVDwu",
     description: "For growing organizations with multiple locations",
     priceInCents: 7900, // $79.00
     priceDisplay: "$79",
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "enterprise",
     name: "Enterprise",
-    stripeProductId: "prod_TygZ2u3bjWXQcF",
+    stripeProductId: "prod_TrfkguYPl7cOZv",
     description: "For regulated facilities and large organizations",
     priceInCents: 14900, // $149.00
     priceDisplay: "$149",
@@ -98,9 +98,8 @@ export const PRODUCTS: Product[] = [
     features: [
       "Everything in Pro",
       "SSO integration (Azure AD, Entra ID)",
-      "Visitor NDAs & waivers",
+      "Vendor management",
       "Emergency evacuation lists",
-      "API access",
       "Custom integrations",
       "Unlimited admin users",
       "Dedicated account manager",
@@ -119,15 +118,15 @@ export const ADD_ONS: AddOn[] = [
     description: "Real-time SMS alerts for visitor arrivals and departures",
     priceInCents: 1500, // $15.00
     priceDisplay: "+$15/location/mo",
-    stripeProductId: "prod_TygZJERYtNCAor",
+    stripeProductId: "",
   },
   {
-    id: "ndas",
-    name: "Visitor NDAs & Waivers",
-    description: "Digital document signing at check-in",
+    id: "vendor",
+    name: "Vendor Management",
+    description: "Track and manage vendor access, approvals, and compliance",
     priceInCents: 1500, // $15.00
     priceDisplay: "+$15/location/mo",
-    stripeProductId: "prod_TygaccyXmG6pQ0",
+    stripeProductId: "",
   },
   {
     id: "audit",
@@ -135,15 +134,15 @@ export const ADD_ONS: AddOn[] = [
     description: "Extended retention, compliance reports, and data export",
     priceInCents: 1900, // $19.00
     priceDisplay: "+$19/location/mo",
-    stripeProductId: "prod_TygQCfs8DHtJcS",
+    stripeProductId: "",
   },
   {
     id: "sso",
     name: "SSO Integration",
-    description: "Azure AD, Entra ID, Okta, and SAML integration",
+    description: "Azure AD, Entra ID, Google, and SAML integration",
     priceInCents: 2500, // $25.00
     priceDisplay: "+$25/location/mo",
-    stripeProductId: "prod_TygQnUBriirRoJ",
+    stripeProductId: "",
   },
 ]
 

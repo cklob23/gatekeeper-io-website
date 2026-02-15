@@ -97,9 +97,8 @@ export default function ProductTermsPage() {
                         </p>
                         <ul className="list-disc space-y-1 pl-6 text-muted-foreground">
                             <li>SSO integration (Azure AD, Entra ID)</li>
-                            <li>Visitor NDAs and digital waivers</li>
+                            <li>Vendor management</li>
                             <li>Emergency evacuation lists</li>
-                            <li>API access</li>
                             <li>Custom integrations</li>
                             <li>Unlimited admin users</li>
                             <li>Dedicated account manager</li>
@@ -141,10 +140,10 @@ export default function ProductTermsPage() {
                                     </tr>
                                     <tr>
                                         <td className="px-4 py-3 font-medium text-foreground">
-                                            Visitor NDAs & Waivers
+                                            Vendor Management
                                         </td>
                                         <td className="px-4 py-3 text-muted-foreground">
-                                            Digital document signing at check-in
+                                            Track and manage vendor access, approvals, and compliance
                                         </td>
                                         <td className="px-4 py-3 text-right text-muted-foreground">
                                             $15/location/mo
@@ -166,7 +165,7 @@ export default function ProductTermsPage() {
                                             SSO Integration
                                         </td>
                                         <td className="px-4 py-3 text-muted-foreground">
-                                            Azure AD, Entra ID, Okta, and SAML integration
+                                            Azure AD, Entra ID, Google, and SAML integration
                                         </td>
                                         <td className="px-4 py-3 text-right text-muted-foreground">
                                             $25/location/mo
@@ -364,11 +363,6 @@ export default function ProductTermsPage() {
                         </p>
                         <ul className="list-disc space-y-1 pl-6 text-muted-foreground">
                             <li>
-                                <strong>API Rate Limits (Enterprise only):</strong> API access is limited to
-                                1,000 requests per minute per location. Higher limits are available upon
-                                request.
-                            </li>
-                            <li>
                                 <strong>Storage:</strong> Photo capture images and visitor data are retained
                                 for 12 months on Starter, 24 months on Pro, and indefinitely on Enterprise
                                 (or as configured).
@@ -438,9 +432,9 @@ export default function ProductTermsPage() {
                         </p>
                         <address className="mt-4 not-italic text-muted-foreground">
                             Gatekeeper.io<br />
-                            Email: legal@gatekeeperio.com<br />
-                            Support: support@gatekeeperio.com<br />
-                            Address: 237 Security Lane, Atlanta, GA 30301
+                            Email: legal@gatekeeper.io<br />
+                            Support: support@gatekeeper.io<br />
+                            Address: 123 Security Lane, Atlanta, GA 30301
                         </address>
                     </div>
                 </section>

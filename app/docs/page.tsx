@@ -2,13 +2,13 @@ import Link from "next/link"
 import { Header } from "@/components/marketing/header"
 import { Footer } from "@/components/marketing/footer"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { BookOpen, Rocket, Settings, Users, Shield, Zap, Code, HelpCircle } from "lucide-react"
+import { BookOpen, Rocket, Settings, Users, Shield, Zap, HelpCircle } from "lucide-react"
 
 const categories = [
   {
     icon: Rocket,
     title: "Getting Started",
-    description: "Learn the basics of setting up and configuring Gatekeeper.io for your organization.",
+    description: "Learn the basics of setting up and configuring Gatekeeper for your organization.",
     links: [
       { label: "Quick Start Guide", href: "#" },
       { label: "Installation", href: "#" },
@@ -30,7 +30,7 @@ const categories = [
   {
     icon: Settings,
     title: "Administration",
-    description: "Configure and customize Gatekeeper.io to meet your organization's needs.",
+    description: "Configure and customize Gatekeeper to meet your organization's needs.",
     links: [
       { label: "User Management", href: "#" },
       { label: "Location Settings", href: "#" },
@@ -52,7 +52,7 @@ const categories = [
   {
     icon: Zap,
     title: "Integrations",
-    description: "Connect Gatekeeper.io with your existing tools and workflows.",
+    description: "Connect Gatekeeper with your existing tools and workflows.",
     links: [
       { label: "SSO Setup", href: "#" },
       { label: "Calendar Integration", href: "#" },
@@ -60,17 +60,7 @@ const categories = [
       { label: "Webhooks", href: "#" }
     ]
   },
-  {
-    icon: Code,
-    title: "API & Developers",
-    description: "Build custom integrations with our REST API.",
-    links: [
-      { label: "API Overview", href: "/api-docs" },
-      { label: "Authentication", href: "#" },
-      { label: "Endpoints", href: "#" },
-      { label: "SDKs", href: "#" }
-    ]
-  }
+
 ]
 
 export default function DocsPage() {
@@ -88,7 +78,7 @@ export default function DocsPage() {
               Documentation
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-primary-foreground/90">
-              Everything you need to get the most out of Gatekeeper.io. From setup to advanced features.
+              Everything you need to get the most out of Gatekeeper. From setup to advanced features.
             </p>
             <div className="mt-8">
               <input
@@ -108,8 +98,7 @@ export default function DocsPage() {
             <span className="text-muted-foreground">|</span>
             <Link href="#" className="text-primary hover:underline">Video Tutorials</Link>
             <span className="text-muted-foreground">|</span>
-            <Link href="/api-docs" className="text-primary hover:underline">API Reference</Link>
-            <span className="text-muted-foreground">|</span>
+
             <Link href="/help" className="text-primary hover:underline">FAQs</Link>
           </div>
         </section>
